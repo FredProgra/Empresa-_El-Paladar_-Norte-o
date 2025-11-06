@@ -1,15 +1,21 @@
+package seguridad;
+
+
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-        
+ import java.awt.Panel;
+
+
 
 /**
  *
  * @author USER
  */
 public class Inventario extends javax.swing.JFrame {
-
-    /**
+           
+    JPanel p=new JPanel();
+    /*
      * Creates new form Panel
      */
     public Inventario() {
@@ -20,6 +26,7 @@ public class Inventario extends javax.swing.JFrame {
     
     private void initContent(){
         ShowJPanel(new Cliente_1());
+        
     }
     
     private void ShowJPanel (JPanel p){
@@ -44,14 +51,14 @@ public class Inventario extends javax.swing.JFrame {
         back = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         btnInicio = new javax.swing.JButton();
-        btnProyecto = new javax.swing.JButton();
+        btnPlato = new javax.swing.JButton();
+        btnInsumo = new javax.swing.JButton();
         btnInventario = new javax.swing.JButton();
-        btnCliente = new javax.swing.JButton();
-        btnEmpleados = new javax.swing.JButton();
-        btnFinanzas = new javax.swing.JButton();
-        btnAgregar = new javax.swing.JButton();
         btnReportes = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnFacturar = new javax.swing.JButton();
+        btnPedidos = new javax.swing.JButton();
+        btnRegistroUsuario = new javax.swing.JButton();
+        btncliente = new javax.swing.JButton();
         conten = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,24 +81,37 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
-        btnProyecto.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        btnProyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-clientes-50.png"))); // NOI18N
-        btnProyecto.setText("Clientes");
-        btnProyecto.setBorder(null);
-        btnProyecto.setBorderPainted(false);
-        btnProyecto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProyecto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnProyecto.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnProyecto.addActionListener(new java.awt.event.ActionListener() {
+        btnPlato.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btnPlato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-inventario-50.png"))); // NOI18N
+        btnPlato.setText("Platos");
+        btnPlato.setBorder(null);
+        btnPlato.setBorderPainted(false);
+        btnPlato.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPlato.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPlato.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnPlato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProyectoActionPerformed(evt);
+                btnPlatoActionPerformed(evt);
+            }
+        });
+
+        btnInsumo.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btnInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-ingrediente-50.png"))); // NOI18N
+        btnInsumo.setText("Insumos");
+        btnInsumo.setBorder(null);
+        btnInsumo.setBorderPainted(false);
+        btnInsumo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnInsumo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnInsumo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnInsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsumoActionPerformed(evt);
             }
         });
 
         btnInventario.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        btnInventario.setForeground(new java.awt.Color(255, 255, 255));
         btnInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-inventario-50.png"))); // NOI18N
-        btnInventario.setText("Platos");
+        btnInventario.setText("Inventarios");
         btnInventario.setBorder(null);
         btnInventario.setBorderPainted(false);
         btnInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -103,65 +123,9 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
-        btnCliente.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-ingrediente-50.png"))); // NOI18N
-        btnCliente.setText("Insumos");
-        btnCliente.setBorder(null);
-        btnCliente.setBorderPainted(false);
-        btnCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnCliente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClienteActionPerformed(evt);
-            }
-        });
-
-        btnEmpleados.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-inventario-50.png"))); // NOI18N
-        btnEmpleados.setText("Inventarios");
-        btnEmpleados.setBorder(null);
-        btnEmpleados.setBorderPainted(false);
-        btnEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEmpleados.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnEmpleados.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpleadosActionPerformed(evt);
-            }
-        });
-
-        btnFinanzas.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        btnFinanzas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-boleta-de-calificaciones-50.png"))); // NOI18N
-        btnFinanzas.setText("Reportes");
-        btnFinanzas.setBorder(null);
-        btnFinanzas.setBorderPainted(false);
-        btnFinanzas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnFinanzas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnFinanzas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnFinanzas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFinanzasActionPerformed(evt);
-            }
-        });
-
-        btnAgregar.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-facturación-50.png"))); // NOI18N
-        btnAgregar.setText("Facturación");
-        btnAgregar.setBorder(null);
-        btnAgregar.setBorderPainted(false);
-        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-
         btnReportes.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        btnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-pedidos-50.png"))); // NOI18N
-        btnReportes.setText("Pedidos");
+        btnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-boleta-de-calificaciones-50.png"))); // NOI18N
+        btnReportes.setText("Reportes");
         btnReportes.setBorder(null);
         btnReportes.setBorderPainted(false);
         btnReportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -173,16 +137,54 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-empleado-50.png"))); // NOI18N
-        jButton1.setText("Registro de Usuario");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton1.setMaximumSize(new java.awt.Dimension(58, 20));
-        jButton1.setMinimumSize(new java.awt.Dimension(58, 20));
+        btnFacturar.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btnFacturar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-facturación-50.png"))); // NOI18N
+        btnFacturar.setText("Facturación");
+        btnFacturar.setBorder(null);
+        btnFacturar.setBorderPainted(false);
+        btnFacturar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFacturar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnFacturar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnFacturar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacturarActionPerformed(evt);
+            }
+        });
+
+        btnPedidos.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-pedidos-50.png"))); // NOI18N
+        btnPedidos.setText("Pedidos");
+        btnPedidos.setBorder(null);
+        btnPedidos.setBorderPainted(false);
+        btnPedidos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPedidos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPedidos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPedidosActionPerformed(evt);
+            }
+        });
+
+        btnRegistroUsuario.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
+        btnRegistroUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-empleado-50.png"))); // NOI18N
+        btnRegistroUsuario.setText("Registro de Usuario");
+        btnRegistroUsuario.setBorder(null);
+        btnRegistroUsuario.setBorderPainted(false);
+        btnRegistroUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistroUsuario.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnRegistroUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRegistroUsuario.setMaximumSize(new java.awt.Dimension(58, 20));
+        btnRegistroUsuario.setMinimumSize(new java.awt.Dimension(58, 20));
+
+        btncliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-clientes-50.png"))); // NOI18N
+        btncliente.setText("Cliente");
+        btncliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btncliente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btncliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnclienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -190,38 +192,38 @@ public class Inventario extends javax.swing.JFrame {
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnProyecto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPlato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnFacturar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnFinanzas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(72, 72, 72))
+                    .addComponent(btnRegistroUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btncliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(btnProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(btnInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btncliente, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(menuLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(btnPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFacturar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(btnFinanzas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(184, Short.MAX_VALUE))
         );
 
@@ -280,33 +282,35 @@ public class Inventario extends javax.swing.JFrame {
        //ShowJPanel(new Inicio());
     }//GEN-LAST:event_btnIniciocioActionPerformed
 
-    private void btnProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProyectoActionPerformed
-        //ShowJPanel(new Proyectos());
-    }//GEN-LAST:event_btnProyectoActionPerformed
+    private void btnPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatoActionPerformed
+        ShowJPanel(new JP_Plato());
+    }//GEN-LAST:event_btnPlatoActionPerformed
+
+    private void btnInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumoActionPerformed
+        ShowJPanel(new JP_Insumo());
+    }//GEN-LAST:event_btnInsumoActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
-        //ShowJPanel(new Inventario());
+        ShowJPanel(new JP_MoviemintoInventario());
     }//GEN-LAST:event_btnInventarioActionPerformed
 
-    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        ShowJPanel(new Cliente_1());
-    }//GEN-LAST:event_btnClienteActionPerformed
-
-    private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-        //ShowJPanel(new Empleados());
-    }//GEN-LAST:event_btnEmpleadosActionPerformed
-
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
         //ShowJPanel(new Agregar());
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void btnFinanzasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinanzasActionPerformed
-        //ShowJPanel(new Financiero());
-    }//GEN-LAST:event_btnFinanzasActionPerformed
+    }//GEN-LAST:event_btnFacturarActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        //ShowJPanel(new Reportes());
+        //ShowJPanel(new Financiero());
     }//GEN-LAST:event_btnReportesActionPerformed
+
+    private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
+        ShowJPanel(new JP_Pedido());
+    }//GEN-LAST:event_btnPedidosActionPerformed
+
+    private void btnclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclienteActionPerformed
+        // TODO add your handling code here:
+        
+        ShowJPanel(new Cliente_1());
+    }//GEN-LAST:event_btnclienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,6 +339,12 @@ public class Inventario extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -347,16 +357,16 @@ public class Inventario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel back;
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnCliente;
-    private javax.swing.JButton btnEmpleados;
-    private javax.swing.JButton btnFinanzas;
+    private javax.swing.JButton btnFacturar;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnInsumo;
     private javax.swing.JButton btnInventario;
-    private javax.swing.JButton btnProyecto;
+    private javax.swing.JButton btnPedidos;
+    private javax.swing.JButton btnPlato;
+    private javax.swing.JButton btnRegistroUsuario;
     private javax.swing.JButton btnReportes;
+    private javax.swing.JButton btncliente;
     private javax.swing.JPanel conten;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
 }

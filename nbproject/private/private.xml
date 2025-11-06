@@ -3,12 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/clientes/ClienteService.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/Inventario.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/LOGIN.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/clientes/FrmCliente.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/clientes/Cliente_1.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/inventario/FrmInsumo.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/seguridad/Inventario.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/seguridad/LOGIN.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/seguridad/Cliente_1.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/clientes/FrmCliente.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/menu/FrmPlato.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/seguridad/JP_Plato.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/pedidos/FrmPedido.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/empresa/_el/paladar_/norteño/Empresa_ElPaladar_Norteño.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/inventario/Insumo.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/seguridad/JP_Insumo.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/inventario/FrmInsumo.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/inventario/MovimientoInventario.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/seguridad/JP_MoviemintoInventario.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/pedidos/Pedido.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/pedidos/TipoPedido.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/seguridad/JP_Pedido.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/clientes/Cliente.java</file>
+            <file>file:/C:/upn/Empresa-_El-Paladar_-Norte-o/src/clientes/ClienteService.java</file>
         </group>
     </open-files>
 </project-private>

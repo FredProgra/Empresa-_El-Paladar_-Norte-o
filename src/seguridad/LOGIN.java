@@ -5,6 +5,8 @@
 package seguridad;
 import java.awt.Panel;
 import javax.swing.JOptionPane;
+import seguridad.Inventario;
+
 
         
 
@@ -188,8 +190,8 @@ public class LOGIN extends javax.swing.JFrame {
     if(usuario.equals(userCorrecto) && contrasena.equals(passCorrecto)){
         JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
         
-        
-         Panel menu = new Panel();
+       
+         Inventario menu = new Inventario();
         menu.setVisible(true);
         this.dispose();
 

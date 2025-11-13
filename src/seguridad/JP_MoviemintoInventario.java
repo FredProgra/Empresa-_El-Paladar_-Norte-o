@@ -11,6 +11,8 @@ import clientes.Cliente;
 import clientes.ClienteService;
 import inventario.UnidadMedida;
 import inventario.TipoMovimiento;
+import Model.AppContext;
+import inventario.Insumo;
 
 
 public class JP_MoviemintoInventario extends javax.swing.JPanel {
@@ -21,16 +23,30 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
     
     public JP_MoviemintoInventario() {
         initComponents();
+        
         cbotipomovieminto.removeAllItems();
         cbotipomovieminto.addItem(""+TipoMovimiento.ENTRADA);
         cbotipomovieminto.addItem(""+TipoMovimiento.SALIDA);
-        
-        
+         jdfecha.setMaxSelectableDate(new java.util.Date());
+         
+        CargarComboboxInsumo();
         
         initTable();
         cargarDatos("");
         
         
+    }
+    
+    private void CargarComboboxInsumo(){
+    List<Insumo> list=AppContext.inventarioservice.ListarInsumo();
+         cboinsumo.removeAllItems();
+         for (Insumo insumo : list) {
+            
+             
+             cboinsumo.addItem(""+insumo.getNombre());
+            
+        }
+         
     }
     
     private void cargarDatos(String filtro){
@@ -58,18 +74,18 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jtxtNombre = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
         jbtnGuardar = new javax.swing.JButton();
         jbtnEditar = new javax.swing.JButton();
         jbtnEliminar = new javax.swing.JButton();
         jbtnLimpiar = new javax.swing.JButton();
         cbotipomovieminto = new javax.swing.JComboBox<>();
-        jtxtCorreo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jtxtDniRuc = new javax.swing.JTextField();
-        jtxtCelular = new javax.swing.JTextField();
         jbtnEliminarTodo = new javax.swing.JButton();
+        jdfecha = new com.toedter.calendar.JDateChooser();
+        cboinsumo = new javax.swing.JComboBox<>();
         jbtnBuscar = new javax.swing.JButton();
         lblF = new javax.swing.JLabel();
         jtxtQueryBuscar = new javax.swing.JTextField();
@@ -150,12 +166,6 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
             }
         });
 
-        jtxtCelular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtCelularActionPerformed(evt);
-            }
-        });
-
         jbtnEliminarTodo.setBackground(new java.awt.Color(204, 204, 204));
         jbtnEliminarTodo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jbtnEliminarTodo.setText("Eliminar todo");
@@ -169,19 +179,19 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jp1Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(cbotipomovieminto, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel6)))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel6)))))
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(jbtnGuardar)
@@ -190,21 +200,23 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jp1Layout.createSequentialGroup()
                                         .addComponent(jbtnEditar)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jbtnEliminar)))
+                                        .addComponent(jbtnEliminar))
+                                    .addGroup(jp1Layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(cboinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jp1Layout.createSequentialGroup()
                                         .addComponent(jbtnLimpiar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jbtnEliminarTodo))
                                     .addGroup(jp1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jtxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jdfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                 .addContainerGap())
         );
         jp1Layout.setVerticalGroup(
@@ -220,24 +232,22 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addGap(75, 75, 75))
                     .addGroup(jp1Layout.createSequentialGroup()
-                        .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jp1Layout.createSequentialGroup()
-                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jp1Layout.createSequentialGroup()
-                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jtxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14)))
+                        .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbotipomovieminto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbotipomovieminto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jp1Layout.createSequentialGroup()
+                        .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(52, 52, 52)))
                 .addGap(46, 46, 46)
                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnEliminar)
@@ -322,20 +332,20 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
-        jtxtNombre.setText("");
+        txtid.setText("");
         jtxtDniRuc.setText("");
-        jtxtCelular.setText("");
-        jtxtCorreo.setText("");
+        jdfecha.setDate(null);
+        cbotipomovieminto.setSelectedIndex(0);
         cbotipomovieminto.setSelectedIndex(0);
         jtableClientes.clearSelection();
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
         try {
-        if (jtxtNombre.getText().trim().isEmpty() ||
-            jtxtDniRuc.getText().trim().isEmpty() ||
-            jtxtCelular.getText().trim().isEmpty() ||
-            jtxtCorreo.getText().trim().isEmpty()) {
+        if (txtid.getText().trim().isEmpty() ||
+            jtxtDniRuc.getText().trim().isEmpty()
+             
+            ) {
 
                 JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
                 return;
@@ -353,10 +363,6 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
-    private void jtxtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtCelularActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtCelularActionPerformed
-
     private void jtxtDniRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDniRucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtDniRucActionPerformed
@@ -368,6 +374,7 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboinsumo;
     private javax.swing.JComboBox<String> cbotipomovieminto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -385,15 +392,14 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
     private javax.swing.JButton jbtnGuardar;
     private javax.swing.JButton jbtnLimpiar;
     private javax.swing.JComboBox<String> jcmbQueryFiltrar;
+    private com.toedter.calendar.JDateChooser jdfecha;
     private javax.swing.JPanel jp1;
     private javax.swing.JTable jtableClientes;
-    private javax.swing.JTextField jtxtCelular;
-    private javax.swing.JTextField jtxtCorreo;
     private javax.swing.JTextField jtxtDniRuc;
-    private javax.swing.JTextField jtxtNombre;
     private javax.swing.JTextField jtxtQueryBuscar;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblF;
+    private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
     private void initTable()
     {

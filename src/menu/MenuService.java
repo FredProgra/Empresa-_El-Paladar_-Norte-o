@@ -64,4 +64,27 @@ public class MenuService {
         }
         platos.forEach(System.out::println);
     }
+    
+    public List<Plato> listaplatos(){
+    
+    List<Plato> lista=new ArrayList<>();
+        for (Plato plato : platos) {
+            
+            lista.add(plato);
+            
+        }
+    
+    return lista;
+    
+    }
+    
+    public void eliminarPlato(int id){
+        
+        platos.removeIf(p->p.getId()==id);
+        System.out.println("Plato eliminado");
+    
+    
+    }
+    
+    
 }

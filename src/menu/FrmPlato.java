@@ -189,7 +189,7 @@ public class FrmPlato extends javax.swing.JFrame {
         String descripcion=txtdescripcion.getText().trim();
         double precio =Double.parseDouble(txtprecio.getText().trim());
         String categoria=cbocategoria.getSelectedItem().toString();
-        Plato p=new Plato(nombre, descripcion, precio,categoria);
+        Plato p=new Plato(id,nombre, descripcion, precio,categoria);
         menuser.registrarPlato(p);
        menuser.listarMenuCompleto();
         

@@ -33,7 +33,7 @@ public class Pedido {
         this.id = id;
         this.cliente = cliente;
         this.tipo = tipo;
-        this.platos = new ArrayList<>();
+        this.platos = new ArrayList<>(platos);
         this.estado = EstadoPedido.EN_PREPARACION;
         this.fecha = LocalDateTime.now();
         this.motivoCancelacion = "";

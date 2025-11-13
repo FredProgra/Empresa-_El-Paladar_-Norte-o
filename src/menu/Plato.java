@@ -11,6 +11,7 @@ import java.awt.List;
  * @author alfre
  */
 public class Plato {
+    private int id;
      private String nombre;
     private String descripcion;
    
@@ -23,8 +24,9 @@ public class Plato {
     }
     
 
-    public Plato(String nombre, String descripcion, double precio, String categoria) {
+    public Plato(int id,String nombre, String descripcion, double precio, String categoria) {
         this.nombre = nombre;
+        this.id=id;
         this.descripcion = descripcion;
         
         this.precio = precio;
@@ -39,6 +41,19 @@ public class Plato {
     public double getPrecio() { return precio; }
     public boolean isDisponible() { return disponible; }
     public String getCategoria() { return categoria; }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
 
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
     public void setPrecio(double precio) { this.precio = precio; }

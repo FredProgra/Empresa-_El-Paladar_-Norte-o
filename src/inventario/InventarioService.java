@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,15 +17,18 @@ import java.util.Map;
 public class InventarioService {
      private Map<String, Insumo> insumos = new HashMap<>();
     private List<MovimientoInventario> movimientos = new ArrayList<>();
+    private List<Insumo> listinsumo=new ArrayList<>();
 
     // 11. Registrar insumo
     public void registrarInsumo(Insumo insumo) {
         insumos.put(insumo.getNombre().toLowerCase(), insumo);
         System.out.println("Insumo registrado: " + insumo);
+        
+        listinsumo.add(insumo);
     }
 
     // 12. Actualizar cantidad
-    public void actualizarCantidad(String nombre, double nuevaCantidad) {
+    public void actualizarCantidad(String nombre, int nuevaCantidad) {
         Insumo i = insumos.get(nombre.toLowerCase());
         if (i != null) {
             i.setCantidad(nuevaCantidad);
@@ -36,7 +40,7 @@ public class InventarioService {
     }
 
     // 13. Descontar insumos (por pedido)
-    public void descontarInsumo(String nombre, double cantidad) {
+    public void descontarInsumo(String nombre, int cantidad) {
         Insumo i = insumos.get(nombre.toLowerCase());
         if (i != null) {
             if (i.getCantidad() >= cantidad) {
@@ -78,6 +82,26 @@ public class InventarioService {
         for (Insumo i : insumos.values()) {
             System.out.println(i);
         }
+    }
+    
+    public List<Insumo> ListarInsumo(){
+    List<Insumo> filtrada=new ArrayList<>();
+    
+        for (Insumo insu: listinsumo) {
+            filtrada.add(insu);
+            
+        }
+     return filtrada;
+    
+    
+    }
+    
+    
+    public void eliminarInsumo(int id){
+        listinsumo.removeIf(i->i.getId()==id);
+        System.out.println("Insumo Eliminado");
+    
+    
     }
     
 }

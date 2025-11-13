@@ -10,6 +10,8 @@ import clientes.Cliente;
 import clientes.Cliente;
 import clientes.ClienteService;
 import inventario.UnidadMedida;
+import Model.AppContext;
+import inventario.Insumo;
 
 
 public class JP_Insumo extends javax.swing.JPanel {
@@ -57,17 +59,17 @@ public class JP_Insumo extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jtxtNombre = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
         jbtnGuardar = new javax.swing.JButton();
         jbtnEditar = new javax.swing.JButton();
         jbtnEliminar = new javax.swing.JButton();
         jbtnLimpiar = new javax.swing.JButton();
         cbounidadmedida = new javax.swing.JComboBox<>();
-        jtxtCorreo = new javax.swing.JTextField();
+        txtnombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jtxtDniRuc = new javax.swing.JTextField();
-        jtxtCelular = new javax.swing.JTextField();
+        txtcantidad = new javax.swing.JTextField();
+        txtStockminimo = new javax.swing.JTextField();
         jbtnEliminarTodo = new javax.swing.JButton();
         jbtnBuscar = new javax.swing.JButton();
         lblF = new javax.swing.JLabel();
@@ -105,7 +107,7 @@ public class JP_Insumo extends javax.swing.JPanel {
 
         jLabel4.setText("Nombre");
 
-        jLabel5.setText("Precio");
+        jLabel5.setText("Cantidad");
 
         jbtnGuardar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnGuardar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -123,6 +125,11 @@ public class JP_Insumo extends javax.swing.JPanel {
         jbtnEliminar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jbtnEliminar.setText("Eliminar");
+        jbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEliminarActionPerformed(evt);
+            }
+        });
 
         jbtnLimpiar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnLimpiar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -143,15 +150,15 @@ public class JP_Insumo extends javax.swing.JPanel {
 
         jLabel7.setText("Stock Minimo");
 
-        jtxtDniRuc.addActionListener(new java.awt.event.ActionListener() {
+        txtcantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtDniRucActionPerformed(evt);
+                txtcantidadActionPerformed(evt);
             }
         });
 
-        jtxtCelular.addActionListener(new java.awt.event.ActionListener() {
+        txtStockminimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtCelularActionPerformed(evt);
+                txtStockminimoActionPerformed(evt);
             }
         });
 
@@ -171,7 +178,7 @@ public class JP_Insumo extends javax.swing.JPanel {
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jp1Layout.createSequentialGroup()
@@ -180,31 +187,31 @@ public class JP_Insumo extends javax.swing.JPanel {
                                     .addComponent(jLabel6)))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(jbtnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jp1Layout.createSequentialGroup()
+                                .addComponent(jbtnEditar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtnEliminar)
+                                .addGap(62, 62, 62)
+                                .addComponent(jbtnLimpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbtnEliminarTodo))
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jp1Layout.createSequentialGroup()
-                                        .addComponent(jbtnEditar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jbtnEliminar)))
-                                .addGap(18, 18, 18)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(49, 49, 49)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jp1Layout.createSequentialGroup()
-                                        .addComponent(jbtnLimpiar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jbtnEliminarTodo))
-                                    .addGroup(jp1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jtxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap())
+                                        .addGap(6, 6, 6)
+                                        .addComponent(txtStockminimo, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel7))))))
+                .addGap(72, 72, 72))
         );
         jp1Layout.setVerticalGroup(
             jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,24 +226,22 @@ public class JP_Insumo extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addGap(75, 75, 75))
                     .addGroup(jp1Layout.createSequentialGroup()
-                        .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jp1Layout.createSequentialGroup()
-                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jp1Layout.createSequentialGroup()
-                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jtxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14)))
+                        .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbounidadmedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbounidadmedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jp1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtStockminimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)))
                 .addGap(46, 46, 46)
                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnEliminar)
@@ -321,20 +326,31 @@ public class JP_Insumo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
-        jtxtNombre.setText("");
-        jtxtDniRuc.setText("");
-        jtxtCelular.setText("");
-        jtxtCorreo.setText("");
+        txtid.setText("");
+        txtcantidad.setText("");
+        txtStockminimo.setText("");
+        txtnombre.setText("");
         cbounidadmedida.setSelectedIndex(0);
         jtableClientes.clearSelection();
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
+        
+        int id=Integer.parseInt(txtid.getText().trim());
+        String nombre=txtnombre.getText().trim();
+        int cantidad=Integer.parseInt(txtcantidad.getText().trim());
+        int stockminimo=Integer.parseInt(txtStockminimo.getText().trim());
+        String unidadmedida=cbounidadmedida.getSelectedItem().toString();
+        
+        Insumo insumo=new Insumo(id, nombre, cantidad, unidadmedida, stockminimo);
+        AppContext.inventarioservice.registrarInsumo(insumo);
+        
+        
         try {
-        if (jtxtNombre.getText().trim().isEmpty() ||
-            jtxtDniRuc.getText().trim().isEmpty() ||
-            jtxtCelular.getText().trim().isEmpty() ||
-            jtxtCorreo.getText().trim().isEmpty()) {
+        if (txtid.getText().trim().isEmpty() ||
+            txtcantidad.getText().trim().isEmpty() ||
+            txtStockminimo.getText().trim().isEmpty() ||
+            txtnombre.getText().trim().isEmpty()) {
 
                 JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
                 return;
@@ -352,17 +368,26 @@ public class JP_Insumo extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
-    private void jtxtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtCelularActionPerformed
+    private void txtStockminimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockminimoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtCelularActionPerformed
+    }//GEN-LAST:event_txtStockminimoActionPerformed
 
-    private void jtxtDniRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDniRucActionPerformed
+    private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtDniRucActionPerformed
+    }//GEN-LAST:event_txtcantidadActionPerformed
 
     private void cbounidadmedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbounidadmedidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbounidadmedidaActionPerformed
+
+    private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
+        // TODO add your handling code here:
+        
+        int id=Integer.parseInt(txtid.getText().trim());
+        
+        AppContext.inventarioservice.eliminarInsumo(id);
+        JOptionPane.showMessageDialog(this, "Insumo eliminado");
+    }//GEN-LAST:event_jbtnEliminarActionPerformed
     
     
 
@@ -386,13 +411,13 @@ public class JP_Insumo extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcmbQueryFiltrar;
     private javax.swing.JPanel jp1;
     private javax.swing.JTable jtableClientes;
-    private javax.swing.JTextField jtxtCelular;
-    private javax.swing.JTextField jtxtCorreo;
-    private javax.swing.JTextField jtxtDniRuc;
-    private javax.swing.JTextField jtxtNombre;
     private javax.swing.JTextField jtxtQueryBuscar;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblF;
+    private javax.swing.JTextField txtStockminimo;
+    private javax.swing.JTextField txtcantidad;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
     private void initTable()
     {

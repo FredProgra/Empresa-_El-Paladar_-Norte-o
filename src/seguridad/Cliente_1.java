@@ -9,13 +9,14 @@ import clientes.ClienteService;
 import clientes.Cliente;
 import clientes.Cliente;
 import clientes.ClienteService;
+import Model.AppContext;
 
 
 public class Cliente_1 extends javax.swing.JPanel {
 
   
     private DefaultTableModel modelo;
-    private ClienteService clienteserv= new ClienteService();
+   
     
     public Cliente_1() {
         initComponents();
@@ -28,7 +29,7 @@ public class Cliente_1 extends javax.swing.JPanel {
     private void cargarDatos(String filtro){
         modelo.setRowCount(0);
         
-        List<Cliente> lista= clienteserv.listarclienteXfiltro(filtro);
+        List<Cliente> lista= AppContext.clienteservice.listarclienteXfiltro(filtro);
         for (Cliente c : lista) {
             modelo.addRow(new Object[]{
                 c.getNombre(), c.getId(), c.getDni(), c.getTelefono(), c.getCorreo(), c.getDni()
@@ -124,6 +125,11 @@ public class Cliente_1 extends javax.swing.JPanel {
         jbtnEliminar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jbtnEliminar.setText("Eliminar");
+        jbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEliminarActionPerformed(evt);
+            }
+        });
 
         jbtnLimpiar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnLimpiar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -327,9 +333,11 @@ public class Cliente_1 extends javax.swing.JPanel {
         String correo=txtcorreo.getText().trim();
         String telefono=txtTelefono.getText().trim();
         Cliente cli=new Cliente(id, nombre, apellido, dni, telefono, correo);
+        AppContext.clienteservice.registrarCliente(cli);
+        AppContext.clienteservice.listarClientes();
         
-       clienteserv.registrarCliente(cli);
-        clienteserv.listarClientes();
+      
+       
         
         
         try {
@@ -352,6 +360,13 @@ public class Cliente_1 extends javax.swing.JPanel {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
+        // TODO add your handling code here:
+        
+        String dni=txtDni.getText().trim();
+        AppContext.clienteservice.eliminarCliente(dni);
+    }//GEN-LAST:event_jbtnEliminarActionPerformed
     
     
 

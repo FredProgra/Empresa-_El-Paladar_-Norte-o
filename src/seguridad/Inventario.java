@@ -25,7 +25,7 @@ public class Inventario extends javax.swing.JFrame {
     
     
     private void initContent(){
-        ShowJPanel(new Cliente_1());
+        ShowJPanel(new JP_Inicio());
         
     }
     
@@ -175,6 +175,11 @@ public class Inventario extends javax.swing.JFrame {
         btnRegistroUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnRegistroUsuario.setMaximumSize(new java.awt.Dimension(58, 20));
         btnRegistroUsuario.setMinimumSize(new java.awt.Dimension(58, 20));
+        btnRegistroUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroUsuarioActionPerformed(evt);
+            }
+        });
 
         btncliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-clientes-50.png"))); // NOI18N
         btncliente.setText("Cliente");
@@ -279,7 +284,8 @@ public class Inventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciocioActionPerformed
-       //ShowJPanel(new Inicio());
+       
+       ShowJPanel(new JP_Inicio());
     }//GEN-LAST:event_btnIniciocioActionPerformed
 
     private void btnPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlatoActionPerformed
@@ -296,6 +302,7 @@ public class Inventario extends javax.swing.JFrame {
 
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
         //ShowJPanel(new Agregar());
+        ShowJPanel(new JP_Factura());
     }//GEN-LAST:event_btnFacturarActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
@@ -311,6 +318,11 @@ public class Inventario extends javax.swing.JFrame {
         
         ShowJPanel(new Cliente_1());
     }//GEN-LAST:event_btnclienteActionPerformed
+
+    private void btnRegistroUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroUsuarioActionPerformed
+        // TODO add your handling code here:
+        ShowJPanel(new JP_Usuario());
+    }//GEN-LAST:event_btnRegistroUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

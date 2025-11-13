@@ -1,6 +1,7 @@
 package seguridad;
 
 
+import Model.AppContext;
 import clientes.ClienteService;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
@@ -10,6 +11,9 @@ import clientes.Cliente;
 import clientes.Cliente;
 import clientes.ClienteService;
 import inventario.UnidadMedida;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import menu.Plato;
 import pedidos.TipoPedido;
 
 
@@ -28,8 +32,8 @@ public class JP_Pedido extends javax.swing.JPanel {
         
         
         
-        initTable();
-        cargarDatos("");
+        
+       
         
         
     }
@@ -51,20 +55,18 @@ public class JP_Pedido extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtableClientes = new javax.swing.JTable();
         lblC = new javax.swing.JLabel();
         jp1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jtxtNombre = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
         jbtnGuardar = new javax.swing.JButton();
         jbtnEditar = new javax.swing.JButton();
         jbtnEliminar = new javax.swing.JButton();
         jbtnLimpiar = new javax.swing.JButton();
         cbotipodepedido = new javax.swing.JComboBox<>();
-        jtxtCorreo = new javax.swing.JTextField();
+        txtcliente = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jbtnEliminarTodo = new javax.swing.JButton();
         btnverplatos = new javax.swing.JButton();
@@ -73,24 +75,10 @@ public class JP_Pedido extends javax.swing.JPanel {
         jtxtQueryBuscar = new javax.swing.JTextField();
         jcmbQueryFiltrar = new javax.swing.JComboBox<>();
         jbtnFiltrar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Buscar:");
-
-        jtableClientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "DNI", "Nombre", "Tipo", "Celular", "Correo"
-            }
-        ));
-        jScrollPane2.setViewportView(jtableClientes);
 
         lblC.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         lblC.setText("Gestión del Pedido");
@@ -144,6 +132,11 @@ public class JP_Pedido extends javax.swing.JPanel {
 
         btnverplatos.setBackground(new java.awt.Color(0, 204, 255));
         btnverplatos.setText("Ver Platos");
+        btnverplatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnverplatosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp1Layout = new javax.swing.GroupLayout(jp1);
         jp1.setLayout(jp1Layout);
@@ -156,7 +149,7 @@ public class JP_Pedido extends javax.swing.JPanel {
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(jbtnGuardar)
@@ -173,7 +166,7 @@ public class JP_Pedido extends javax.swing.JPanel {
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(25, 25, 25)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbotipodepedido, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,8 +191,8 @@ public class JP_Pedido extends javax.swing.JPanel {
                         .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp1Layout.createSequentialGroup()
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbotipodepedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)))
                 .addComponent(btnverplatos)
@@ -237,6 +230,17 @@ public class JP_Pedido extends javax.swing.JPanel {
         jbtnFiltrar.setForeground(new java.awt.Color(255, 255, 255));
         jbtnFiltrar.setText("Ver");
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 537, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 142, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -248,21 +252,21 @@ public class JP_Pedido extends javax.swing.JPanel {
                         .addGap(15, 15, 15)
                         .addComponent(lblC, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(lblF, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcmbQueryFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtQueryBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblF, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jcmbQueryFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtnFiltrar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtxtQueryBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -280,25 +284,25 @@ public class JP_Pedido extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(jtxtQueryBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(37, 37, 37)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
-        jtxtNombre.setText("");
+        txtid.setText("");
   
-        jtxtCorreo.setText("");
+        txtcliente.setText("");
         cbotipodepedido.setSelectedIndex(0);
-        jtableClientes.clearSelection();
+       
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
         try {
-        if (jtxtNombre.getText().trim().isEmpty() ||
+        if (txtid.getText().trim().isEmpty() ||
             
-            jtxtCorreo.getText().trim().isEmpty()) {
+            txtcliente.getText().trim().isEmpty()) {
 
                 JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
                 return;
@@ -319,6 +323,45 @@ public class JP_Pedido extends javax.swing.JPanel {
     private void cbotipodepedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipodepedidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbotipodepedidoActionPerformed
+
+    private void btnverplatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnverplatosActionPerformed
+        // TODO add your handling code here:
+        
+         String[] columnas = {"Nombre","precio","Disponible"};
+        modelo=new DefaultTableModel(columnas,0);
+        JTable tabla=new JTable(modelo);
+        tabla.setFillsViewportHeight(true);
+        tabla.setRowHeight(25);
+        
+       JScrollPane scroll=new JScrollPane(tabla);
+       jPanel1.add(scroll, java.awt.BorderLayout.CENTER);
+       
+    
+    
+       
+      
+          List<Plato> ListaPlatos=AppContext.menuservice.listaplatos();
+          
+        
+        
+        for(Plato p:ListaPlatos){
+           Object[] fila={p.getNombre(),p.getPrecio(),p.isDisponible()};
+          
+           modelo.addRow(fila);
+        }
+        jPanel1.removeAll();
+        jPanel1.setLayout(new java.awt.BorderLayout());
+        
+     javax.swing.JLabel titulo = new javax.swing.JLabel("MENU DEL DIA", javax.swing.SwingConstants.CENTER);
+        titulo.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+
+        jPanel1.add(titulo, java.awt.BorderLayout.NORTH);
+        jPanel1.add(scroll, java.awt.BorderLayout.CENTER);
+
+    
+        jPanel1.validate();
+        jPanel1.repaint();
+    }//GEN-LAST:event_btnverplatosActionPerformed
     
     
 
@@ -330,7 +373,7 @@ public class JP_Pedido extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtnBuscar;
     private javax.swing.JButton jbtnEditar;
     private javax.swing.JButton jbtnEliminar;
@@ -340,14 +383,13 @@ public class JP_Pedido extends javax.swing.JPanel {
     private javax.swing.JButton jbtnLimpiar;
     private javax.swing.JComboBox<String> jcmbQueryFiltrar;
     private javax.swing.JPanel jp1;
-    private javax.swing.JTable jtableClientes;
-    private javax.swing.JTextField jtxtCorreo;
-    private javax.swing.JTextField jtxtNombre;
     private javax.swing.JTextField jtxtQueryBuscar;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblF;
+    private javax.swing.JTextField txtcliente;
+    private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
-    private void initTable()
+   /* private void initTable()
     {
         String[] header = {"DNI", "Nombre", "Tipo", "Celular", "Correo"};
         modelo = new DefaultTableModel(header,0){
@@ -357,5 +399,5 @@ public class JP_Pedido extends javax.swing.JPanel {
             }
         };
         jtableClientes.setModel(modelo);
-    }
+    }*/
 }

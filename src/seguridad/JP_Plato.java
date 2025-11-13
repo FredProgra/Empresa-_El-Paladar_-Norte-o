@@ -10,6 +10,8 @@ import clientes.Cliente;
 import clientes.Cliente;
 import clientes.ClienteService;
 import menu.Categoria;
+import menu.Plato;
+import Model.AppContext;
 
 
 public class JP_Plato extends javax.swing.JPanel {
@@ -57,18 +59,18 @@ public class JP_Plato extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jtxtNombre = new javax.swing.JTextField();
-        jbtnGuardar = new javax.swing.JButton();
-        jbtnEditar = new javax.swing.JButton();
-        jbtnEliminar = new javax.swing.JButton();
-        jbtnLimpiar = new javax.swing.JButton();
+        txtid = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         cbocategoria = new javax.swing.JComboBox<>();
-        jtxtCorreo = new javax.swing.JTextField();
+        txtnombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jtxtDniRuc = new javax.swing.JTextField();
-        jtxtCelular = new javax.swing.JTextField();
-        jbtnEliminarTodo = new javax.swing.JButton();
+        txtprecio = new javax.swing.JTextField();
+        txtdescripcion = new javax.swing.JTextField();
+        btnEliminarTodo = new javax.swing.JButton();
         jbtnBuscar = new javax.swing.JButton();
         lblF = new javax.swing.JLabel();
         jtxtQueryBuscar = new javax.swing.JTextField();
@@ -107,29 +109,34 @@ public class JP_Plato extends javax.swing.JPanel {
 
         jLabel5.setText("Precio");
 
-        jbtnGuardar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtnGuardar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jbtnGuardar.setText("Guardar");
-        jbtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setBackground(new java.awt.Color(204, 204, 204));
+        btnGuardar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnGuardarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
-        jbtnEditar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtnEditar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jbtnEditar.setText("Actualizar");
+        btnEditar.setBackground(new java.awt.Color(204, 204, 204));
+        btnEditar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnEditar.setText("Actualizar");
 
-        jbtnEliminar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jbtnEliminar.setText("Eliminar");
-
-        jbtnLimpiar.setBackground(new java.awt.Color(204, 204, 204));
-        jbtnLimpiar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jbtnLimpiar.setText("Limpiar");
-        jbtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(204, 204, 204));
+        btnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnLimpiarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setBackground(new java.awt.Color(204, 204, 204));
+        btnLimpiar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
             }
         });
 
@@ -143,21 +150,21 @@ public class JP_Plato extends javax.swing.JPanel {
 
         jLabel7.setText("Descripción");
 
-        jtxtDniRuc.addActionListener(new java.awt.event.ActionListener() {
+        txtprecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtDniRucActionPerformed(evt);
+                txtprecioActionPerformed(evt);
             }
         });
 
-        jtxtCelular.addActionListener(new java.awt.event.ActionListener() {
+        txtdescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtCelularActionPerformed(evt);
+                txtdescripcionActionPerformed(evt);
             }
         });
 
-        jbtnEliminarTodo.setBackground(new java.awt.Color(204, 204, 204));
-        jbtnEliminarTodo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jbtnEliminarTodo.setText("Eliminar todo");
+        btnEliminarTodo.setBackground(new java.awt.Color(204, 204, 204));
+        btnEliminarTodo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        btnEliminarTodo.setText("Eliminar todo");
 
         javax.swing.GroupLayout jp1Layout = new javax.swing.GroupLayout(jp1);
         jp1.setLayout(jp1Layout);
@@ -168,42 +175,42 @@ public class JP_Plato extends javax.swing.JPanel {
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jp1Layout.createSequentialGroup()
-                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtid, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtprecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                                 .addGap(26, 26, 26)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jp1Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(cbocategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel6)))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel6)))))
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jbtnGuardar)
+                        .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jp1Layout.createSequentialGroup()
-                                        .addComponent(jbtnEditar)
+                                        .addComponent(btnEditar)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jbtnEliminar)))
+                                        .addComponent(btnEliminar)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jp1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jtxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jp1Layout.createSequentialGroup()
-                                        .addComponent(jbtnLimpiar)
+                                        .addComponent(btnLimpiar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jbtnEliminarTodo)))))))
+                                        .addComponent(btnEliminarTodo)))))))
                 .addContainerGap())
         );
         jp1Layout.setVerticalGroup(
@@ -218,13 +225,13 @@ public class JP_Plato extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
@@ -234,15 +241,15 @@ public class JP_Plato extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbocategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(46, 46, 46)
                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnEliminar)
-                    .addComponent(jbtnLimpiar)
-                    .addComponent(jbtnEditar)
-                    .addComponent(jbtnGuardar)
-                    .addComponent(jbtnEliminarTodo))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnEditar)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnEliminarTodo))
                 .addContainerGap())
         );
 
@@ -319,21 +326,34 @@ public class JP_Plato extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
-        jtxtNombre.setText("");
-        jtxtDniRuc.setText("");
-        jtxtCelular.setText("");
-        jtxtCorreo.setText("");
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtid.setText("");
+        txtprecio.setText("");
+        txtdescripcion.setText("");
+        txtnombre.setText("");
         cbocategoria.setSelectedIndex(0);
         jtableClientes.clearSelection();
-    }//GEN-LAST:event_jbtnLimpiarActionPerformed
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+       
+        int id =Integer.parseInt(txtid.getText().trim());
+        String nombre=txtnombre.getText().trim();
+        String descripcion=txtdescripcion.getText().trim();
+        double precio=Double.parseDouble(txtprecio.getText());
+        String categoria=cbocategoria.getSelectedItem().toString();
+         Plato p= new Plato(id,nombre, descripcion, precio, categoria);
+          AppContext.menuservice.registrarPlato(p);
+          
+         
+        
+        
+        
         try {
-        if (jtxtNombre.getText().trim().isEmpty() ||
-            jtxtDniRuc.getText().trim().isEmpty() ||
-            jtxtCelular.getText().trim().isEmpty() ||
-            jtxtCorreo.getText().trim().isEmpty()) {
+        if (txtid.getText().trim().isEmpty() ||
+            txtprecio.getText().trim().isEmpty() ||
+            txtdescripcion.getText().trim().isEmpty() ||
+            txtnombre.getText().trim().isEmpty()) {
 
                 JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
                 return;
@@ -341,7 +361,7 @@ public class JP_Plato extends javax.swing.JPanel {
         }catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
-    }//GEN-LAST:event_jbtnGuardarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void jtxtQueryBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtQueryBuscarKeyReleased
         
@@ -351,21 +371,34 @@ public class JP_Plato extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
-    private void jtxtCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtCelularActionPerformed
+    private void txtdescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtCelularActionPerformed
+    }//GEN-LAST:event_txtdescripcionActionPerformed
 
-    private void jtxtDniRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDniRucActionPerformed
+    private void txtprecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtDniRucActionPerformed
+    }//GEN-LAST:event_txtprecioActionPerformed
 
     private void cbocategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbocategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbocategoriaActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+
+     int id=Integer.parseInt(txtid.getText().trim());
+     
+     AppContext.menuservice.eliminarPlato(id);
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEliminarTodo;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cbocategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -376,22 +409,17 @@ public class JP_Plato extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtnBuscar;
-    private javax.swing.JButton jbtnEditar;
-    private javax.swing.JButton jbtnEliminar;
-    private javax.swing.JButton jbtnEliminarTodo;
     private javax.swing.JButton jbtnFiltrar;
-    private javax.swing.JButton jbtnGuardar;
-    private javax.swing.JButton jbtnLimpiar;
     private javax.swing.JComboBox<String> jcmbQueryFiltrar;
     private javax.swing.JPanel jp1;
     private javax.swing.JTable jtableClientes;
-    private javax.swing.JTextField jtxtCelular;
-    private javax.swing.JTextField jtxtCorreo;
-    private javax.swing.JTextField jtxtDniRuc;
-    private javax.swing.JTextField jtxtNombre;
     private javax.swing.JTextField jtxtQueryBuscar;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblF;
+    private javax.swing.JTextField txtdescripcion;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtnombre;
+    private javax.swing.JTextField txtprecio;
     // End of variables declaration//GEN-END:variables
     private void initTable()
     {

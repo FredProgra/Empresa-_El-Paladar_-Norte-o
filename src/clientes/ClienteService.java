@@ -34,6 +34,8 @@ public class ClienteService {
 
     public void eliminarCliente(String dni) {
         clientes.removeIf(c -> c.getDni().equals(dni));
+        
+        System.out.println("Cliente eliminado");
     }
 
     public Cliente buscarCliente(String dato) {
@@ -58,6 +60,19 @@ public class ClienteService {
             if (c.getNombre().equalsIgnoreCase(filtro)) {
                 filtrada.add(c);
             }
+        }
+        return filtrada;
+    }
+    
+    public List<Cliente> listarcliente(){
+    
+     
+
+        List<Cliente> filtrada = new ArrayList<>();
+        for (Cliente c : clientes) {
+             
+                filtrada.add(c);
+            
         }
         return filtrada;
     }

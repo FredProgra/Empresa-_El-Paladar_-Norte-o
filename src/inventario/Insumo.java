@@ -9,24 +9,48 @@ package inventario;
  * @author alfre
  */
 public class Insumo {
+    private int id;
      private String nombre;
     private double cantidad;
     private String unidadMedida;
     private double stockMinimo;
 
-    public Insumo(String nombre, double cantidad, String unidadMedida, double stockMinimo) {
+    public Insumo(int id,String nombre, double cantidad, String unidadMedida, double stockMinimo) {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.unidadMedida = unidadMedida;
         this.stockMinimo = stockMinimo;
+        this.id=id;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setCantidad(double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
+    }
+    
+    
 
     public String getNombre() { return nombre; }
     public double getCantidad() { return cantidad; }
     public String getUnidadMedida() { return unidadMedida; }
     public double getStockMinimo() { return stockMinimo; }
 
-    public void setCantidad(double cantidad) { this.cantidad = cantidad; }
+    
     public void setStockMinimo(double stockMinimo) { this.stockMinimo = stockMinimo; }
 
     public boolean necesitaReposicion() {

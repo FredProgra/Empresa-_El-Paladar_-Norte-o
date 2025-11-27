@@ -85,19 +85,31 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jtableClientes">
+        <Component class="javax.swing.JTable" name="tbpedidos">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="6">
-                <Column editable="true" title="DNI" type="java.lang.Object"/>
-                <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                <Column editable="true" title="Tipo" type="java.lang.Object"/>
-                <Column editable="true" title="Celular" type="java.lang.Object"/>
-                <Column editable="true" title="Correo" type="java.lang.Object"/>
+              <Table columnCount="7" rowCount="6">
+                <Column editable="true" title="id" type="java.lang.String"/>
+                <Column editable="true" title="Cliente" type="java.lang.String"/>
+                <Column editable="true" title="Tipo" type="java.lang.String"/>
+                <Column editable="true" title="Estado" type="java.lang.String"/>
+                <Column editable="true" title="Platos" type="java.lang.Integer"/>
+                <Column editable="true" title="Total" type="java.lang.Double"/>
+                <Column editable="true" title="Fecha" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -129,6 +141,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbpedidosMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -160,16 +175,24 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" pref="56" max="-2" attributes="0"/>
-                                      <Component id="jtxtDniRuc" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <Component id="txtmonto" min="-2" pref="108" max="-2" attributes="0"/>
                                       <Component id="txtid" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                          <Component id="cbotipomovieminto" min="-2" pref="158" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                                  <Component id="cbomediopago" min="-2" pref="158" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <Component id="cbotiporecibo" min="-2" pref="126" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -180,17 +203,9 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jbtnEditar" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jbtnEliminar" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                          <Component id="cboinsumo" min="-2" pref="164" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="jbtnEditar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jbtnEliminar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
@@ -235,7 +250,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtid" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cboinsumo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbotiporecibo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jdfecha" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -246,8 +261,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jtxtDniRuc" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbotipomovieminto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtmonto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbomediopago" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -340,14 +355,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnLimpiarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbotipomovieminto">
+        <Component class="javax.swing.JComboBox" name="cbomediopago">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbotipomoviemintoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbomediopagoActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -363,9 +378,12 @@
             <Property name="text" type="java.lang.String" value="Fecha"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtxtDniRuc">
+        <Component class="javax.swing.JTextField" name="txtmonto">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtDniRucActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtmontoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbtnEliminarTodo">
@@ -381,7 +399,7 @@
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdfecha">
         </Component>
-        <Component class="javax.swing.JComboBox" name="cboinsumo">
+        <Component class="javax.swing.JComboBox" name="cbotiporecibo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -446,6 +464,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ver"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnFiltrarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -7,7 +7,10 @@ package Model;
 import clientes.ClienteService;
 import inventario.Insumo;
 import inventario.InventarioService;
+import pedidos.PedidoService;
 import  menu.MenuService;
+import pedidos.Pedido;
+import pedidos.TipoPedido;
         
         
         
@@ -22,5 +25,7 @@ public class AppContext {
     public static  final MenuService menuservice = new MenuService();
     
     public static  final InventarioService inventarioservice=new InventarioService();
+    public static final PedidoService pedidoservice= new PedidoService();
+        public static final Pedido pedido= new Pedido();
     
 }

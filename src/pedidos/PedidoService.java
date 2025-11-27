@@ -5,6 +5,7 @@
 package pedidos;
 
 import inventario.InventarioService;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,14 +15,37 @@ import menu.Plato;
  *
  * @author alfre
  */
-public class PedidoService {
+public class PedidoService extends Pedido{
      private Map<Integer, Pedido> pedidos = new HashMap<>();
     private InventarioService inventario;
+    private List<Plato> platosTemp = new ArrayList<>(); // Lista temporal
     private int contadorId = 1;
-
-    public PedidoService(InventarioService inventario) {
-        this.inventario = inventario;
+    
+    
+    
+ public void agregarPlatoTemporal(Plato plato) {
+        platosTemp.add(plato);
     }
+
+    public List<Plato> getPlatosTemporales() {
+        return platosTemp;
+    }
+
+    public void limpiarPlatosTemporales() {
+        platosTemp.clear();
+    }
+
+    public Pedido registrarNuevoPedido(String cliente, TipoPedido tipo) {
+        Pedido pedido = new Pedido(contadorId++, cliente, tipo, new ArrayList<>(platosTemp));
+        pedidos.put(pedido.getId(), pedido);
+        limpiarPlatosTemporales(); // Limpia después de crear el pedido
+        return pedido;
+    }
+
+
+    /*public PedidoService(InventarioService inventario) {
+        this.inventario = inventario;
+    }*/
 
     // 16-18. Registrar pedido
     public Pedido registrarPedido(String cliente, TipoPedido tipo, List<Plato> platos) {
@@ -32,11 +56,11 @@ public class PedidoService {
         pedidos.put(pedido.getId(), pedido);
 
         // Descontar insumos simuladamente
-        for (Plato p : platos) {
+        /*for (Plato p : platos) {
             // Aquí podrías integrar con un mapa de ingredientes reales
             inventario.descontarInsumo("Pescado", 1);
             inventario.descontarInsumo("Limón", 2);
-        }
+        }*/
 
         System.out.println("✅ Pedido registrado: " + pedido);
         return pedido;
@@ -79,5 +103,27 @@ public class PedidoService {
     public void listarPedidos() {
         System.out.println("\n--- LISTA DE PEDIDOS ---");
         pedidos.values().forEach(System.out::println);
+    }
+    public List<Pedido> listarPedido(){
+    List<Pedido>filtrada=new ArrayList<>();
+        for (Pedido pedido :pedidos.values()) {
+            filtrada.add(pedido);
+            System.out.println(""+filtrada.toString());
+        }
+        return filtrada;
+        
+    
+    }
+    
+    public Pedido buscarPedido(int id){
+       for (Pedido p : pedidos.values()) {
+        if (p.getId() == id) {
+            System.out.println(""+p.toString());
+            return p;
+        }
+    }
+    return null;
+
+    
     }
 }

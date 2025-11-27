@@ -20,25 +20,25 @@ public class MesaService {
     // 31. Registrar mesa
     public void registrarMesa(Mesa mesa) {
         mesas.add(mesa);
-        System.out.println("✅ Mesa registrada: " + mesa);
+        System.out.println(" Mesa registrada: " + mesa);
     }
 
     // 32. Asignar mesa a pedido
     public boolean asignarMesa(int numeroMesa, Pedido pedido) {
         Mesa mesa = buscarMesa(numeroMesa);
         if (mesa == null) {
-            System.out.println("❌ Mesa no encontrada.");
+            System.out.println("Mesa no encontrada.");
             return false;
         }
 
         if (mesa.getEstado() != EstadoMesa.LIBRE) {
-            System.out.println("❌ La mesa " + numeroMesa + " no está disponible.");
+            System.out.println("La mesa " + numeroMesa + " no está disponible.");
             return false;
         }
 
         mesa.setEstado(EstadoMesa.OCUPADA);
         asignaciones.put(numeroMesa, pedido);
-        System.out.println("🍽️ Pedido asignado a la mesa " + numeroMesa);
+        System.out.println(" Pedido asignado a la mesa " + numeroMesa);
         return true;
     }
 
@@ -57,7 +57,7 @@ public class MesaService {
         if (mesa != null) {
             mesa.setEstado(EstadoMesa.LIBRE);
             asignaciones.remove(numeroMesa);
-            System.out.println("✅ Mesa " + numeroMesa + " liberada y lista para nuevos clientes.");
+            System.out.println(" Mesa " + numeroMesa + " liberada y lista para nuevos clientes.");
         }
     }
 
@@ -70,7 +70,7 @@ public class MesaService {
     }
 
     public void listarMesas() {
-        System.out.println("\n--- 📋 ESTADO DE MESAS ---");
+        System.out.println("\n--- ESTADO DE MESAS ---");
         mesas.forEach(System.out::println);
     }
 }

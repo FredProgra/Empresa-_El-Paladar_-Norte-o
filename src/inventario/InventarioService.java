@@ -26,6 +26,9 @@ public class InventarioService {
         
         listinsumo.add(insumo);
     }
+    
+    
+   public void registrarMovimientoInventario(MovimientoInventario mi){ movimientos.add(mi);System.out.print(mi);}
 
     // 12. Actualizar cantidad
     public void actualizarCantidad(String nombre, int nuevaCantidad) {

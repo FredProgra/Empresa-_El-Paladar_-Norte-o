@@ -13,6 +13,7 @@ import inventario.UnidadMedida;
 import inventario.TipoMovimiento;
 import Model.AppContext;
 import inventario.Insumo;
+import inventario.MovimientoInventario;
 
 
 public class JP_MoviemintoInventario extends javax.swing.JPanel {
@@ -82,7 +83,7 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
         cbotipomovieminto = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jtxtDniRuc = new javax.swing.JTextField();
+        txtcantidad = new javax.swing.JTextField();
         jbtnEliminarTodo = new javax.swing.JButton();
         jdfecha = new com.toedter.calendar.JDateChooser();
         cboinsumo = new javax.swing.JComboBox<>();
@@ -160,9 +161,9 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
 
         jLabel7.setText("Fecha");
 
-        jtxtDniRuc.addActionListener(new java.awt.event.ActionListener() {
+        txtcantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtDniRucActionPerformed(evt);
+                txtcantidadActionPerformed(evt);
             }
         });
 
@@ -184,7 +185,7 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +242,7 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbotipomovieminto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +334,7 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
         txtid.setText("");
-        jtxtDniRuc.setText("");
+        txtcantidad.setText("");
         jdfecha.setDate(null);
         cbotipomovieminto.setSelectedIndex(0);
         cbotipomovieminto.setSelectedIndex(0);
@@ -341,9 +342,30 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
+        
+        int id=Integer.parseInt(txtid.getText().trim());  
+        String insumo=cboinsumo.getSelectedItem().toString();
+        String tipoMovimiento=cbotipomovieminto.getSelectedItem().toString();
+        double cantidad=Double.parseDouble(txtcantidad.getText().trim());
+        
+        
+        if (tipoMovimiento.equals("ENTRADA")) {
+          MovimientoInventario mi=new MovimientoInventario(insumo, TipoMovimiento.ENTRADA, cantidad);
+            AppContext.inventarioservice.registrarMovimientoInventario(mi);
+        }
+        
+        else{
+            MovimientoInventario mia=new MovimientoInventario(insumo, TipoMovimiento.SALIDA, cantidad);
+         AppContext.inventarioservice.registrarMovimientoInventario(mia);
+
+        
+        }
+       
+                
+        
         try {
         if (txtid.getText().trim().isEmpty() ||
-            jtxtDniRuc.getText().trim().isEmpty()
+            txtcantidad.getText().trim().isEmpty()
              
             ) {
 
@@ -363,9 +385,9 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
-    private void jtxtDniRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDniRucActionPerformed
+    private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtDniRucActionPerformed
+    }//GEN-LAST:event_txtcantidadActionPerformed
 
     private void cbotipomoviemintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipomoviemintoActionPerformed
         // TODO add your handling code here:
@@ -395,10 +417,10 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser jdfecha;
     private javax.swing.JPanel jp1;
     private javax.swing.JTable jtableClientes;
-    private javax.swing.JTextField jtxtDniRuc;
     private javax.swing.JTextField jtxtQueryBuscar;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblF;
+    private javax.swing.JTextField txtcantidad;
     private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
     private void initTable()

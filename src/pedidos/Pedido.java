@@ -29,6 +29,10 @@ public class Pedido {
     private String motivoCancelacion;
      private double total;
 
+    public Pedido() {
+    }
+     
+
     public Pedido(int id, String cliente, TipoPedido tipo,List<Plato> platos) {
         this.id = id;
         this.cliente = cliente;

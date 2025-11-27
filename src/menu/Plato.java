@@ -33,6 +33,7 @@ public class Plato {
         this.disponible = true; // Por defecto está disponible
         this.categoria = categoria;
     }
+    
 
     // Getters y Setters
     public String getNombre() { return nombre; }

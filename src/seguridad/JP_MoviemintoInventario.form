@@ -160,7 +160,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" pref="56" max="-2" attributes="0"/>
-                                      <Component id="jtxtDniRuc" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <Component id="txtcantidad" min="-2" pref="108" max="-2" attributes="0"/>
                                       <Component id="txtid" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -239,7 +239,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jtxtDniRuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtcantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cbotipomovieminto" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -363,9 +363,9 @@
             <Property name="text" type="java.lang.String" value="Fecha"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtxtDniRuc">
+        <Component class="javax.swing.JTextField" name="txtcantidad">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtDniRucActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcantidadActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbtnEliminarTodo">

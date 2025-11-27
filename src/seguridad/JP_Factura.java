@@ -12,53 +12,46 @@ import clientes.ClienteService;
 import inventario.UnidadMedida;
 import inventario.TipoMovimiento;
 import Model.AppContext;
+import facturacion.Comprobante;
+import facturacion.Pago;
+import facturacion.TipoPago;
+import facturacion.Tipoboleta;
 import inventario.Insumo;
+import javax.swing.JTable;
+import menu.Plato;
 
 
 public class JP_Factura extends javax.swing.JPanel {
 
   
     private DefaultTableModel modelo;
+    private pedidos.Pedido pedidoselecionado;
     private ClienteService clienteserv= new ClienteService();
     
     public JP_Factura() {
         initComponents();
         
-        cbotipomovieminto.removeAllItems();
-        cbotipomovieminto.addItem(""+TipoMovimiento.ENTRADA);
-        cbotipomovieminto.addItem(""+TipoMovimiento.SALIDA);
-         jdfecha.setMaxSelectableDate(new java.util.Date());
+        cbomediopago.removeAllItems();
+        cbomediopago.addItem(""+TipoPago.EFECTIVO);
+        cbomediopago.addItem(""+TipoPago.PLIN);
+        cbomediopago.addItem(""+TipoPago.TARJETA);
+        cbomediopago.addItem(""+TipoPago.YAPE);
+        cbotiporecibo.removeAllItems();
+        cbotiporecibo.addItem(""+Tipoboleta.BOLETA);
+        cbotiporecibo.addItem(""+Tipoboleta.FACRTURA);
+        jdfecha.setMaxSelectableDate(new java.util.Date());
          
-        CargarComboboxInsumo();
+        
         
         initTable();
-        cargarDatos("");
+        
         
         
     }
     
-    private void CargarComboboxInsumo(){
-    List<Insumo> list=AppContext.inventarioservice.ListarInsumo();
-         cboinsumo.removeAllItems();
-         for (Insumo insumo : list) {
-            
-             
-             cboinsumo.addItem(""+insumo.getNombre());
-            
-        }
-         
-    }
     
-    private void cargarDatos(String filtro){
-        modelo.setRowCount(0);
-        
-        List<Cliente> lista= clienteserv.listarclienteXfiltro(filtro);
-        for (Cliente c : lista) {
-            modelo.addRow(new Object[]{
-                c.getNombre(), c.getId(), c.getDni(), c.getTelefono(), c.getCorreo(), c.getDni()
-            });
-    }
-}
+    
+ 
 
    
     @SuppressWarnings("unchecked")
@@ -67,7 +60,7 @@ public class JP_Factura extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtableClientes = new javax.swing.JTable();
+        tbpedidos = new javax.swing.JTable();
         lblC = new javax.swing.JLabel();
         jp1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -79,13 +72,13 @@ public class JP_Factura extends javax.swing.JPanel {
         jbtnEditar = new javax.swing.JButton();
         jbtnEliminar = new javax.swing.JButton();
         jbtnLimpiar = new javax.swing.JButton();
-        cbotipomovieminto = new javax.swing.JComboBox<>();
+        cbomediopago = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jtxtDniRuc = new javax.swing.JTextField();
+        txtmonto = new javax.swing.JTextField();
         jbtnEliminarTodo = new javax.swing.JButton();
         jdfecha = new com.toedter.calendar.JDateChooser();
-        cboinsumo = new javax.swing.JComboBox<>();
+        cbotiporecibo = new javax.swing.JComboBox<>();
         jbtnBuscar = new javax.swing.JButton();
         lblF = new javax.swing.JLabel();
         jtxtQueryBuscar = new javax.swing.JTextField();
@@ -95,20 +88,33 @@ public class JP_Factura extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Buscar:");
 
-        jtableClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tbpedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "DNI", "Nombre", "Tipo", "Celular", "Correo"
+                "id", "Cliente", "Tipo", "Estado", "Platos", "Total", "Fecha"
             }
-        ));
-        jScrollPane2.setViewportView(jtableClientes);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tbpedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbpedidosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbpedidos);
 
         lblC.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         lblC.setText("Gestión de Facturación");
@@ -150,9 +156,9 @@ public class JP_Factura extends javax.swing.JPanel {
             }
         });
 
-        cbotipomovieminto.addActionListener(new java.awt.event.ActionListener() {
+        cbomediopago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbotipomoviemintoActionPerformed(evt);
+                cbomediopagoActionPerformed(evt);
             }
         });
 
@@ -160,9 +166,10 @@ public class JP_Factura extends javax.swing.JPanel {
 
         jLabel7.setText("Fecha");
 
-        jtxtDniRuc.addActionListener(new java.awt.event.ActionListener() {
+        txtmonto.setEnabled(false);
+        txtmonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtDniRucActionPerformed(evt);
+                txtmontoActionPerformed(evt);
             }
         });
 
@@ -184,28 +191,28 @@ public class JP_Factura extends javax.swing.JPanel {
                             .addGroup(jp1Layout.createSequentialGroup()
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtmonto, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jp1Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(cbotipomovieminto, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel6)))))
+                                        .addGap(26, 26, 26)
+                                        .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jp1Layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(cbomediopago, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel6)))
+                                    .addGroup(jp1Layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(cbotiporecibo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jp1Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(jbtnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jp1Layout.createSequentialGroup()
-                                .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jp1Layout.createSequentialGroup()
-                                        .addComponent(jbtnEditar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jbtnEliminar))
-                                    .addGroup(jp1Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(cboinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jbtnEditar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtnEliminar)
                                 .addGap(18, 18, 18)
                                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jp1Layout.createSequentialGroup()
@@ -238,7 +245,7 @@ public class JP_Factura extends javax.swing.JPanel {
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cboinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbotiporecibo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jdfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -246,8 +253,8 @@ public class JP_Factura extends javax.swing.JPanel {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtxtDniRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbotipomovieminto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtmonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbomediopago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(46, 46, 46)
                 .addGroup(jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnEliminar)
@@ -281,6 +288,11 @@ public class JP_Factura extends javax.swing.JPanel {
         jbtnFiltrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbtnFiltrar.setForeground(new java.awt.Color(255, 255, 255));
         jbtnFiltrar.setText("Ver");
+        jbtnFiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnFiltrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -333,26 +345,19 @@ public class JP_Factura extends javax.swing.JPanel {
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
         txtid.setText("");
-        jtxtDniRuc.setText("");
+        txtmonto.setText("");
         jdfecha.setDate(null);
-        cbotipomovieminto.setSelectedIndex(0);
-        cbotipomovieminto.setSelectedIndex(0);
-        jtableClientes.clearSelection();
+        cbomediopago.setSelectedIndex(0);
+        cbomediopago.setSelectedIndex(0);
+        tbpedidos.clearSelection();
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
-        try {
-        if (txtid.getText().trim().isEmpty() ||
-            jtxtDniRuc.getText().trim().isEmpty()
-             
-            ) {
-
-                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
-                return;
-            }
-        }catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+        
+        String tiporecibo=cbotiporecibo.getSelectedItem().toString();
+        Pago pago=new Pago(TipoPago.EFECTIVO, pedidoselecionado.calcularTotal());
+        Comprobante c=new Comprobante(tiporecibo, pedidoselecionado,pedidoselecionado.calcularTotal(),pago);
+        System.out.println(""+c.toString());
     }//GEN-LAST:event_jbtnGuardarActionPerformed
 
     private void jtxtQueryBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtQueryBuscarKeyReleased
@@ -363,19 +368,53 @@ public class JP_Factura extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
-    private void jtxtDniRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtDniRucActionPerformed
+    private void txtmontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtDniRucActionPerformed
+    }//GEN-LAST:event_txtmontoActionPerformed
 
-    private void cbotipomoviemintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipomoviemintoActionPerformed
+    private void cbomediopagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbomediopagoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbotipomoviemintoActionPerformed
+    }//GEN-LAST:event_cbomediopagoActionPerformed
+
+    private void jbtnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnFiltrarActionPerformed
+        // TODO add your handling code here:
+       JTable tabla=new JTable(modelo); 
+         List<pedidos.Pedido> ListaPedidos=AppContext.pedidoservice.listarPedido();
+          
+        
+        
+        for(pedidos.Pedido p:ListaPedidos){
+           Object[] fila={p.getId(),p.getCliente(),p.getTipo(),p.getEstado(),p.getPlatos().size(),p.calcularTotal(),p.getFecha()};
+          
+           modelo.addRow(fila);
+        }
+       
+        
+    }//GEN-LAST:event_jbtnFiltrarActionPerformed
+
+    private void tbpedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbpedidosMouseClicked
+        // TODO add your handling code here:
+       
+
+ int fila = tbpedidos.getSelectedRow();
+    if (fila >= 0) {
+         int salida=JOptionPane.showConfirmDialog(this,"Estas seguro");
+        if(salida!=1){int idPedido = Integer.parseInt(tbpedidos.getValueAt(fila, 0).toString()); // Columna ID
+        pedidoselecionado = AppContext.pedidoservice.buscarPedido(idPedido);}
+        
+
+        System.out.println(salida);
+
+        
+    }
+
+    }//GEN-LAST:event_tbpedidosMouseClicked
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cboinsumo;
-    private javax.swing.JComboBox<String> cbotipomovieminto;
+    private javax.swing.JComboBox<String> cbomediopago;
+    private javax.swing.JComboBox<String> cbotiporecibo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -394,22 +433,22 @@ public class JP_Factura extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcmbQueryFiltrar;
     private com.toedter.calendar.JDateChooser jdfecha;
     private javax.swing.JPanel jp1;
-    private javax.swing.JTable jtableClientes;
-    private javax.swing.JTextField jtxtDniRuc;
     private javax.swing.JTextField jtxtQueryBuscar;
     private javax.swing.JLabel lblC;
     private javax.swing.JLabel lblF;
+    private javax.swing.JTable tbpedidos;
     private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
     private void initTable()
     {
-        String[] header = {"DNI", "Nombre", "Tipo", "Celular", "Correo"};
+       String[] header = {"Id", "Cliente", "Tipo","Estado","platos","Monto","Fecha"};
         modelo = new DefaultTableModel(header,0){
             @Override
             public boolean isCellEditable(int row, int column){
                 return false;
             }
         };
-        jtableClientes.setModel(modelo);
+        tbpedidos.setModel(modelo);
     }
 }

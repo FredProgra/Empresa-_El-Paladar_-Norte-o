@@ -17,6 +17,9 @@ public class MovimientoInventario {
     private double cantidad;
     private LocalDateTime fecha;
 
+    public MovimientoInventario() {
+    }
+
     public MovimientoInventario(String insumo, TipoMovimiento tipo, double cantidad) {
         this.insumo = insumo;
         this.tipo = tipo;

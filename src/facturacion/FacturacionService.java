@@ -39,13 +39,13 @@ public class FacturacionService {
         Comprobante comp = new Comprobante(tipo, pedido, total, pago);
         comprobantes.add(comp);
 
-        System.out.println("✅ " + tipo + " generada con total: S/ " + total);
+        System.out.println("" + tipo + " generada con total: S/ " + total);
         return comp;
     }
 
     // 30. Consultar comprobantes
     public void listarComprobantes() {
-        System.out.println("\n--- 📜 HISTORIAL DE COMPROBANTES ---");
+        System.out.println("\n---HISTORIAL DE COMPROBANTES ---");
         comprobantes.forEach(System.out::println);
     }
 }

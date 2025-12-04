@@ -5,40 +5,21 @@
         <group>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/Cliente_1.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/inventario/Insumo.java</file>
+            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/Model/MysqlConection.java</file>
+            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/Inventario.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/menu/Plato.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/menu/MenuService.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/facturacion/TipoPago.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/clientes/Cliente.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_Mesa.java</file>
+            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_MoviemintoInventario.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_Inicio.java</file>
+            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/inventario/InventarioService.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/clientes/ClienteService.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/Rol.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/clase_a/Carro.java</file>
+            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_Insumo.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/pedidos/Pedido.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_Pedido.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/menu/Categoria.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/facturacion/Pago.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/facturacion/Comprobante.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/inventario/MovimientoInventario.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_Usuario.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/Inventario.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/menu/FrmPlato.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/mesas/Mesa.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/mesas/MesaService.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_MoviemintoInventario.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/mesas/EstadoMesa.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_Plato.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/inventario/InventarioService.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_Insumo.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/clase_a/CarroService.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/JP_Factura.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/Usuario.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/empresa/_el/paladar_/norteño/Empresa_ElPaladar_Norteño.java</file>
+            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/pedidos/PedidoService.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/seguridad/LOGIN.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/clientes/FrmCliente.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/Model/AppContext.java</file>
-            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/facturacion/FacturacionService.java</file>
             <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/inventario/FrmInsumo.java</file>
+            <file>file:/C:/Users/alfre/Documents/NetBeansProjects/Empresa%20_El%20Paladar_%20Norteño/src/inventario/MovimientoInventario.java</file>
         </group>
     </open-files>
 </project-private>

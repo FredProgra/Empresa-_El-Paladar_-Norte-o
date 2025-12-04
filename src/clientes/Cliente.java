@@ -25,6 +25,9 @@ public class Cliente {
         this.correo = correo;
     }
 
+    public Cliente() {
+    }
+
     public void setId(int id) {
         this.id = id;
     }

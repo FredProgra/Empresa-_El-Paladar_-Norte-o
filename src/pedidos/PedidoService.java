@@ -4,13 +4,16 @@
  */
 package pedidos;
 
+import Model.MysqlConection;
 import inventario.InventarioService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import menu.Plato;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 /**
  *
  * @author alfre
@@ -50,20 +53,37 @@ public class PedidoService extends Pedido{
     // 16-18. Registrar pedido
     public Pedido registrarPedido(String cliente, TipoPedido tipo, List<Plato> platos) {
         Pedido pedido = new Pedido(contadorId++, cliente, tipo);
+        String cadena="insert into tb_pedido values(?,?,?,?,?,?,?)";
+        try(Connection cnn=MysqlConection.getConnection();PreparedStatement ps=cnn.prepareStatement(cadena)) {
+            
         for (Plato p : platos) {
             pedido.agregarPlato(p);
         }
         pedidos.put(pedido.getId(), pedido);
-
+            
+            ps.setInt(1,pedido.getId());
+            ps.setString(2,cliente);
+            ps.setString(3,tipo.toString());
+            ps.setString(4,pedido.getEstado().toString());
+            ps.setInt(5, pedido.getPlatos().size());
+            ps.setDouble(6,pedido.calcularTotal());
+            ps.setString(7,pedido.getFecha().toString());
+            ps.executeUpdate();
+            
+            System.out.println("✅ Pedido registrado en la base de datos: " + pedido);
+        
+            
+        } catch (SQLException e) {System.out.println("✅ Error Pedido registrado en la base de datos: " + e.getMessage());
+        }
+        
         // Descontar insumos simuladamente
         /*for (Plato p : platos) {
             // Aquí podrías integrar con un mapa de ingredientes reales
             inventario.descontarInsumo("Pescado", 1);
             inventario.descontarInsumo("Limón", 2);
         }*/
+return pedido;
 
-        System.out.println("✅ Pedido registrado: " + pedido);
-        return pedido;
     }
 
     // 19. Cambiar estado

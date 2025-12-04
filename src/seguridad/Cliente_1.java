@@ -10,6 +10,9 @@ import clientes.Cliente;
 import clientes.Cliente;
 import clientes.ClienteService;
 import Model.AppContext;
+import java.io.BufferedReader;
+import  java.io.BufferedWriter;
+import java.io.FileWriter;
 
 
 public class Cliente_1 extends javax.swing.JPanel {
@@ -121,6 +124,11 @@ public class Cliente_1 extends javax.swing.JPanel {
         jbtnEditar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnEditar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jbtnEditar.setText("Actualizar");
+        jbtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEditarActionPerformed(evt);
+            }
+        });
 
         jbtnEliminar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -147,6 +155,12 @@ public class Cliente_1 extends javax.swing.JPanel {
         jbtnEliminarTodo.setBackground(new java.awt.Color(204, 204, 204));
         jbtnEliminarTodo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jbtnEliminarTodo.setText("Eliminar todo");
+
+        txtcorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcorreoActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("ID");
 
@@ -320,36 +334,62 @@ public class Cliente_1 extends javax.swing.JPanel {
         txtDni.setText("");
         txtTelefono.setText("");
         txtapellido.setText("");
+        txtid.setText("");
+        txtcorreo.setText("");
+        
      
         jtableClientes.clearSelection();
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
        
-        int id=Integer.parseInt(txtid.getText().trim());
-        String nombre=txtNombre.getText().trim();
-        String apellido=txtapellido.getText().trim();
-        String dni=txtDni.getText().trim();
-        String correo=txtcorreo.getText().trim();
-        String telefono=txtTelefono.getText().trim();
-        Cliente cli=new Cliente(id, nombre, apellido, dni, telefono, correo);
-        AppContext.clienteservice.registrarCliente(cli);
-        AppContext.clienteservice.listarClientes();
+       
         
       
        
         
         
-        try {
-        if (txtid.getText().trim().isEmpty() || txtNombre.getText().trim().isEmpty() || txtapellido.getText().trim().isEmpty()
-                || txtcorreo.getText().trim().isEmpty() || txtTelefono.getText().trim().isEmpty() || txtDni.getText().trim().isEmpty()) {
+        try { 
+            
+       
+       
+            if(txtid.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "El campo ID no puede estar vacío");
 
-                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
-                return;
+                
+                
+            }else{ try {
+                 int id=Integer.parseInt(txtid.getText().trim());
+                 String nombre=txtNombre.getText().trim();
+        String apellido=txtapellido.getText().trim();
+        String dni=txtDni.getText().trim();
+        String correo=txtcorreo.getText().trim();
+        String telefono=txtTelefono.getText().trim();
+if (nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty()
+                || correo.isEmpty() || telefono.isEmpty() || dni.isEmpty()) {
+
+                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.","MENSAJE", JOptionPane.WARNING_MESSAGE);
+                return;}
+else{
+
+ Cliente cli=new Cliente(id, nombre, apellido, dni, telefono, correo);
+ 
+        AppContext.clienteservice.registrarCliente(cli);
+        AppContext.clienteservice.listarClientes();
+         JOptionPane.showMessageDialog(this,"Registro cliento exitoso","Mensaje",JOptionPane.INFORMATION_MESSAGE);}
+                     
+                 } catch (Exception e) {
+                 }
+                 
+                 
+                 
+                 
                 
             }
+            
+       
         }catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Error: " + "Debe ingresar un número válido","",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbtnGuardarActionPerformed
 
@@ -367,6 +407,56 @@ public class Cliente_1 extends javax.swing.JPanel {
         String dni=txtDni.getText().trim();
         AppContext.clienteservice.eliminarCliente(dni);
     }//GEN-LAST:event_jbtnEliminarActionPerformed
+
+    private void txtcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcorreoActionPerformed
+
+    private void jbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarActionPerformed
+        // TODO add your handling code here:
+        try { 
+            
+       
+       
+            if(txtid.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "El campo ID no puede estar vacío");
+
+                
+                
+            }else{ try {
+                 int id=Integer.parseInt(txtid.getText().trim());
+                 String nombre=txtNombre.getText().trim();
+        String apellido=txtapellido.getText().trim();
+        String dni=txtDni.getText().trim();
+        String correo=txtcorreo.getText().trim();
+        String telefono=txtTelefono.getText().trim();
+if (nombre.isEmpty() || apellido.isEmpty() || dni.isEmpty()
+                || correo.isEmpty() || telefono.isEmpty() || dni.isEmpty()) {
+
+                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.","MENSAJE", JOptionPane.WARNING_MESSAGE);
+                return;}
+else{
+
+ 
+ 
+        AppContext.clienteservice.actualizarCliente(id,nombre,apellido,dni,correo,telefono);
+        AppContext.clienteservice.listarClientes();
+         JOptionPane.showMessageDialog(this,"Registro cliento exitoso","Mensaje",JOptionPane.INFORMATION_MESSAGE);}
+                     
+                 } catch (Exception e) {
+                 }
+                 
+                 
+                 
+                 
+                
+            }
+            
+       
+        }catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: " + "Debe ingresar un número válido","",JOptionPane.WARNING_MESSAGE);
+        } 
+    }//GEN-LAST:event_jbtnEditarActionPerformed
     
     
 

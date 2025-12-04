@@ -343,38 +343,46 @@ public class JP_MoviemintoInventario extends javax.swing.JPanel {
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
         
-        int id=Integer.parseInt(txtid.getText().trim());  
+        
+        try {
+            if(txtid.getText().trim().isEmpty()){JOptionPane.showMessageDialog(this,"El ID no puede estar vacio","Mensaje",JOptionPane.ERROR_MESSAGE);}
+            
+            else{
+                try {
+                    if(txtcantidad.getText().trim().isEmpty()){JOptionPane.showMessageDialog(this,"Todos los campos deben estar completados","Mensaje",JOptionPane.ERROR_MESSAGE);}
+                    else{
+                         int id=Integer.parseInt(txtid.getText().trim());  
         String insumo=cboinsumo.getSelectedItem().toString();
         String tipoMovimiento=cbotipomovieminto.getSelectedItem().toString();
         double cantidad=Double.parseDouble(txtcantidad.getText().trim());
         
         
         if (tipoMovimiento.equals("ENTRADA")) {
-          MovimientoInventario mi=new MovimientoInventario(insumo, TipoMovimiento.ENTRADA, cantidad);
+          MovimientoInventario mi=new MovimientoInventario(id,insumo, TipoMovimiento.ENTRADA, cantidad);
             AppContext.inventarioservice.registrarMovimientoInventario(mi);
+            JOptionPane.showMessageDialog(this,"Inventario Registrado Correctamente","Mensaje",JOptionPane.WARNING_MESSAGE);
         }
         
         else{
-            MovimientoInventario mia=new MovimientoInventario(insumo, TipoMovimiento.SALIDA, cantidad);
+            MovimientoInventario mia=new MovimientoInventario(id,insumo, TipoMovimiento.SALIDA, cantidad);
          AppContext.inventarioservice.registrarMovimientoInventario(mia);
+         JOptionPane.showMessageDialog(this,"Inventario Registrado Correctamente","Mensaje",JOptionPane.WARNING_MESSAGE);
 
         
         }
+                    }
+                    
+                    
+                } catch (Exception e) {
+                }
+            }
+        } catch (Exception e) {
+        }
+       
        
                 
         
-        try {
-        if (txtid.getText().trim().isEmpty() ||
-            txtcantidad.getText().trim().isEmpty()
-             
-            ) {
-
-                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
-                return;
-            }
-        }catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+       
     }//GEN-LAST:event_jbtnGuardarActionPerformed
 
     private void jtxtQueryBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtQueryBuscarKeyReleased

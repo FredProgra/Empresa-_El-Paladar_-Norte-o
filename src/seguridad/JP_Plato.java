@@ -121,6 +121,11 @@ public class JP_Plato extends javax.swing.JPanel {
         btnEditar.setBackground(new java.awt.Color(204, 204, 204));
         btnEditar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         btnEditar.setText("Actualizar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setBackground(new java.awt.Color(204, 204, 204));
         btnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -337,30 +342,53 @@ public class JP_Plato extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
        
-        int id =Integer.parseInt(txtid.getText().trim());
+        
+        try {
+            
+            if(txtid.getText().trim().isEmpty()){
+            
+            JOptionPane.showMessageDialog(this,"El ID no puede estar vacio","Mensaje",JOptionPane.ERROR_MESSAGE);
+            }else{
+                try {
+                    
+        
+                    
+        if (
+            txtnombre.getText().trim().isEmpty() ||
+            txtdescripcion.getText().trim().isEmpty() ||
+            txtprecio.getText().trim().isEmpty()) {
+
+                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.","Mensaje",JOptionPane.ERROR_MESSAGE);
+                return;
+            }else{
+            int id =Integer.parseInt(txtid.getText().trim());
         String nombre=txtnombre.getText().trim();
         String descripcion=txtdescripcion.getText().trim();
         double precio=Double.parseDouble(txtprecio.getText());
         String categoria=cbocategoria.getSelectedItem().toString();
-         Plato p= new Plato(id,nombre, descripcion, precio, categoria);
+            Plato p= new Plato(id,nombre, descripcion, precio, categoria);
           AppContext.menuservice.registrarPlato(p);
+          JOptionPane.showMessageDialog(this,"Plato Regitrado Correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        
+        }
+        }catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: Rellenar los formularios correctamente","Mensaje",JOptionPane.ERROR_MESSAGE);
+        }
+            
+            
+            }
+            
+            
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(this,"El ID no puede estar vacio","",JOptionPane.WARNING_MESSAGE);
+        }
+        
           
          
         
         
         
-        try {
-        if (txtid.getText().trim().isEmpty() ||
-            txtprecio.getText().trim().isEmpty() ||
-            txtdescripcion.getText().trim().isEmpty() ||
-            txtnombre.getText().trim().isEmpty()) {
-
-                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
-                return;
-            }
-        }catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void jtxtQueryBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtQueryBuscarKeyReleased
@@ -390,6 +418,49 @@ public class JP_Plato extends javax.swing.JPanel {
      
      AppContext.menuservice.eliminarPlato(id);
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+            if(txtid.getText().trim().isEmpty()){
+            
+            JOptionPane.showMessageDialog(this,"El ID no puede estar vacio","Mensaje",JOptionPane.ERROR_MESSAGE);
+            }else{
+                try {
+                    
+        
+                    
+        if (
+            txtnombre.getText().trim().isEmpty() ||
+            txtdescripcion.getText().trim().isEmpty() ||
+            txtprecio.getText().trim().isEmpty()) {
+
+                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.","Mensaje",JOptionPane.ERROR_MESSAGE);
+                return;
+            }else{
+            int id =Integer.parseInt(txtid.getText().trim());
+        String nombre=txtnombre.getText().trim();
+        String descripcion=txtdescripcion.getText().trim();
+        double precio=Double.parseDouble(txtprecio.getText());
+        String categoria=cbocategoria.getSelectedItem().toString();
+            
+          AppContext.menuservice.actualizarPlato(id, nombre, precio, categoria, descripcion);
+          JOptionPane.showMessageDialog(this,"Plato Regitrado Correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        
+        }
+        }catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error: Rellenar los formularios correctamente","Mensaje",JOptionPane.ERROR_MESSAGE);
+        }
+            
+            
+            }
+            
+            
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(this,"El ID no puede estar vacio","",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
     
     
 

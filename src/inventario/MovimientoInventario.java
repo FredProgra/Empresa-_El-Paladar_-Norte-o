@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
  * @author alfre
  */
 public class MovimientoInventario {
+    private int id;
      private String insumo;
     private TipoMovimiento tipo;
     private double cantidad;
@@ -20,12 +21,54 @@ public class MovimientoInventario {
     public MovimientoInventario() {
     }
 
-    public MovimientoInventario(String insumo, TipoMovimiento tipo, double cantidad) {
+    public MovimientoInventario(int id,String insumo, TipoMovimiento tipo, double cantidad) {
+    this.id=id;
         this.insumo = insumo;
         this.tipo = tipo;
         this.cantidad = cantidad;
         this.fecha = LocalDateTime.now();
     }
+
+    public double getCantidad() {
+        return cantidad;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getInsumo() {
+        return insumo;
+    }
+
+    public TipoMovimiento getTipo() {
+        return tipo;
+    }
+
+    public void setCantidad(double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setInsumo(String insumo) {
+        this.insumo = insumo;
+    }
+
+    public void setTipo(TipoMovimiento tipo) {
+        this.tipo = tipo;
+    }
+    
 
     @Override
     public String toString() {

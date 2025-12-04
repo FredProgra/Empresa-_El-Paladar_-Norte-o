@@ -121,6 +121,11 @@ public class JP_Insumo extends javax.swing.JPanel {
         jbtnEditar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnEditar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         jbtnEditar.setText("Actualizar");
+        jbtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnEditarActionPerformed(evt);
+            }
+        });
 
         jbtnEliminar.setBackground(new java.awt.Color(204, 204, 204));
         jbtnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
@@ -335,29 +340,46 @@ public class JP_Insumo extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
-        
-        int id=Integer.parseInt(txtid.getText().trim());
-        String nombre=txtnombre.getText().trim();
-        int cantidad=Integer.parseInt(txtcantidad.getText().trim());
-        int stockminimo=Integer.parseInt(txtStockminimo.getText().trim());
-        String unidadmedida=cbounidadmedida.getSelectedItem().toString();
-        
-        Insumo insumo=new Insumo(id, nombre, cantidad, unidadmedida, stockminimo);
-        AppContext.inventarioservice.registrarInsumo(insumo);
-        
-        
         try {
+            if(txtid.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"El ID no puede estar vacio","Mensaje",JOptionPane.ERROR_MESSAGE);
+            }else{
+                try {
+                  
         if (txtid.getText().trim().isEmpty() ||
             txtcantidad.getText().trim().isEmpty() ||
             txtStockminimo.getText().trim().isEmpty() ||
             txtnombre.getText().trim().isEmpty()) {
 
-                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.");
+                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.","Mensaje",JOptionPane.ERROR_MESSAGE);
                 return;
             }
-        }catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        else{
+              int id=Integer.parseInt(txtid.getText().trim()); String nombre=txtnombre.getText().trim();
+        int cantidad=Integer.parseInt(txtcantidad.getText().trim());
+        int stockminimo=Integer.parseInt(txtStockminimo.getText().trim());
+        String unidadmedida=cbounidadmedida.getSelectedItem().toString();
+        Insumo insumo=new Insumo(id, nombre, cantidad, unidadmedida, stockminimo);
+        AppContext.inventarioservice.registrarInsumo(insumo);
+        JOptionPane.showMessageDialog(this, "Insumo Registrado Correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
+                } catch (Exception e) {
+                }
+                 
+            
+            
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Tiene que ser un Entero","Mensaje",JOptionPane.WARNING_MESSAGE);
+        }
+       
+       
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jbtnGuardarActionPerformed
 
     private void jtxtQueryBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtQueryBuscarKeyReleased
@@ -388,6 +410,44 @@ public class JP_Insumo extends javax.swing.JPanel {
         AppContext.inventarioservice.eliminarInsumo(id);
         JOptionPane.showMessageDialog(this, "Insumo eliminado");
     }//GEN-LAST:event_jbtnEliminarActionPerformed
+
+    private void jbtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarActionPerformed
+        // TODO add your handling code here:
+         try {
+            if(txtid.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"El ID no puede estar vacio","Mensaje",JOptionPane.ERROR_MESSAGE);
+            }else{
+                try {
+                  
+        if (txtid.getText().trim().isEmpty() ||
+            txtcantidad.getText().trim().isEmpty() ||
+            txtStockminimo.getText().trim().isEmpty() ||
+            txtnombre.getText().trim().isEmpty()) {
+
+                JOptionPane.showMessageDialog(this, "Todos los campos deben ser completados.","Mensaje",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        else{
+              int id=Integer.parseInt(txtid.getText().trim()); String nombre=txtnombre.getText().trim();
+        int cantidad=Integer.parseInt(txtcantidad.getText().trim());
+        int stockminimo=Integer.parseInt(txtStockminimo.getText().trim());
+        String unidadmedida=cbounidadmedida.getSelectedItem().toString();
+        
+        AppContext.inventarioservice.actualizarInsumo(id, nombre, cantidad, unidadmedida, stockminimo);
+        JOptionPane.showMessageDialog(this, "Insumo Acualizado Correctamente","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        }
+                } catch (Exception e) {
+                }
+                 
+            
+            
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Tiene que ser un Entero","Mensaje",JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jbtnEditarActionPerformed
     
     
 

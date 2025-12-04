@@ -16,7 +16,7 @@ public class Plato {
     private String descripcion;
    
     private double precio;
-    private boolean disponible;
+    private  String estado;
     private String categoria;
     
 
@@ -30,8 +30,16 @@ public class Plato {
         this.descripcion = descripcion;
         
         this.precio = precio;
-        this.disponible = true; // Por defecto está disponible
+        this.estado ="Disponible"; // Por defecto está disponible
         this.categoria = categoria;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
 
@@ -40,7 +48,7 @@ public class Plato {
     public String getDescripcion() { return descripcion; }
     
     public double getPrecio() { return precio; }
-    public boolean isDisponible() { return disponible; }
+    
     public String getCategoria() { return categoria; }
 
     public void setId(int id) {
@@ -58,7 +66,7 @@ public class Plato {
 
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
     public void setPrecio(double precio) { this.precio = precio; }
-    public void setDisponible(boolean disponible) { this.disponible = disponible; }
+    
     public void setCategoria(String categoria) { this.categoria = categoria; }
 
     @Override
@@ -68,7 +76,7 @@ public class Plato {
                 ", descripcion='" + descripcion + '\'' +
                 
                 ", precio=" + precio +
-                ", disponible=" + disponible +
+                ", disponible=" + estado +
                 ", categoria=" + categoria +
                 '}';
     }

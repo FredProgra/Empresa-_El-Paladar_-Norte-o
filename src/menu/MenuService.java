@@ -4,8 +4,13 @@
  */
 package menu;
 
+import Model.MysqlConection;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
@@ -16,15 +21,32 @@ public class MenuService {
 
     // 6. Registrar nuevos platos
     public void registrarPlato(Plato plato) {
-        platos.add(plato);
-        System.out.println("Plato registrado: " + plato.getNombre());
+        String cadena="insert into tb_plato values(?,?,?,?,?,?)";
+        try( Connection cnn=MysqlConection.getConnection();PreparedStatement ps=cnn.prepareStatement(cadena) ) {
+            
+            ps.setInt(1,plato.getId());
+            ps.setString(2,plato.getNombre());
+            ps.setDouble(3,plato.getPrecio());
+            ps.setString(4,plato.getEstado());
+            ps.setString(5,plato.getCategoria());
+            ps.setString(6,plato.getDescripcion());
+            ps.executeUpdate();
+            platos.add(plato);
+        System.out.println("Plato registrado en la base de datos: " + plato.getNombre());
+            
+        } catch (SQLException e) {System.out.println("Error de registro a la base de datos"+e.getMessage());
+        }
+        
+        
     }
 
     // 7-8. Actualizar precio y descripción
-    public void actualizarPlato(String nombre, double nuevoPrecio, String nuevaDescripcion) {
+    public void actualizarPlato(int id,String nombre, double nuevoPrecio,String catogria, String nuevaDescripcion) {
         for (Plato p : platos) {
-            if (p.getNombre().equalsIgnoreCase(nombre)) {
+            if (p.getId()==id) {
+                p.setNombre(nombre);
                 p.setPrecio(nuevoPrecio);
+                p.setCategoria(catogria);
                 p.setDescripcion(nuevaDescripcion);
                 System.out.println("Plato actualizado: " + p);
                 return;
@@ -34,11 +56,11 @@ public class MenuService {
     }
 
     // 9. Deshabilitar plato
-    public void cambiarDisponibilidad(String nombre, boolean disponible) {
+    public void cambiarDisponibilidad(String nombre, String estado) {
         for (Plato p : platos) {
             if (p.getNombre().equalsIgnoreCase(nombre)) {
-                p.setDisponible(disponible);
-                System.out.println("Disponibilidad actualizada: " + p.getNombre() + " -> " + (disponible ? "Disponible" : "No disponible"));
+                p.setEstado(estado);
+                System.out.println("Disponibilidad actualizada: " + p.getNombre() + " -> " +estado);
                 return;
             }
         }
@@ -66,13 +88,29 @@ public class MenuService {
     }
     
     public List<Plato> listaplatos(){
-    
-    List<Plato> lista=new ArrayList<>();
-        for (Plato plato : platos) {
+        List<Plato> lista=new ArrayList<>();
+        String cadena="select  codplato,nomplato,precioplato,estadoplato,catplato,descplato from tb_plato;";
+        try (Connection cnn=MysqlConection.getConnection();PreparedStatement ps=cnn.prepareStatement(cadena);ResultSet rs=ps.executeQuery()){
+            while (rs.next()) {
+                Plato p=new Plato();
+                p.setId(rs.getInt("codplato"));
+                p.setNombre(rs.getString("nomplato"));
+                p.setPrecio(rs.getDouble("precioplato"));
+                p.setEstado(rs.getString("estadoplato"));
+                p.setCategoria(rs.getString("catplato"));
+                p.setDescripcion(rs.getString("descplato"));
+                lista.add(p);
+                System.out.println("LISTADO DE PLATOS EN LA BASDE DE DATOS");
+                
+            }
+           
             
-            lista.add(plato);
             
+        } catch (SQLException e) { System.out.println("Error de listado en bd"+e.getMessage());
         }
+    
+    
+        
     
     return lista;
     

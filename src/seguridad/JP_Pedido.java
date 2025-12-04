@@ -331,13 +331,33 @@ public class JP_Pedido extends javax.swing.JPanel {
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
        
         
-        
- try {
-        // 1. Obtener datos del formulario
-        int id = Integer.parseInt(txtid.getText().trim());
+        try {
+            if(txtid.getText().trim().isEmpty() || txtcliente.getText().trim().isEmpty()){JOptionPane.showMessageDialog(this,"Completar los datos Requeridos","Mensaje",JOptionPane.ERROR_MESSAGE);}
+            else{
+                try {
+                      int id = Integer.parseInt(txtid.getText().trim());
         String cliente = txtcliente.getText().trim();
         String tipoSeleccionado = cbotipodepedido.getSelectedItem().toString().trim();
         TipoPedido tipo = TipoPedido.valueOf(tipoSeleccionado.toUpperCase()); // Ajusta según tu enum
+         List<Plato> listaPlato= AppContext.pedidoservice.getPlatosTemporales(); // o tu variable pedido.getPlatos()
+         pedidos.Pedido nuevoPedido = new Pedido(id, cliente, tipo, listaPlato);
+         AppContext.pedidoservice.registrarPedido(cliente, tipo, listaPlato); // Ajusta según tu lógica
+         JOptionPane.showMessageDialog(null,
+            "Pedido guardado:\nCliente: " + cliente +
+            "\nTipo: " + tipo +
+            "\nPlatos: "  +listaPlato.size()+
+            "\nTotal: S/ " + nuevoPedido.getTotal());
+                } catch (Exception e) {
+                     JOptionPane.showMessageDialog(this, "Error al guardar el pedido: ","Mensaje",JOptionPane.ERROR_MESSAGE);
+                }
+ 
+            }
+     
+        } catch (Exception e) {
+        }
+ try {
+        // 1. Obtener datos del formulario
+      
 
 // Construir lista de platos desde la tabla del pedido
        /* List<Plato> listaPlatos = new ArrayList<>();
@@ -353,7 +373,7 @@ public class JP_Pedido extends javax.swing.JPanel {
         }*/
 
         // 2. Obtener lista de platos seleccionados
-        List<Plato> listaPlato= AppContext.pedidoservice.getPlatosTemporales(); // o tu variable pedido.getPlatos()
+       
 
         /*if (listaPlatos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar al menos un plato.");
@@ -361,19 +381,15 @@ public class JP_Pedido extends javax.swing.JPanel {
         }*/
 
         // 3. Crear el objeto Pedido
-        pedidos.Pedido nuevoPedido = new Pedido(id, cliente, tipo, listaPlato);
+       
 
         // 4. Guardar (puede ser en BD, lista global, etc.)
-        AppContext.pedidoservice.registrarPedido(cliente, tipo, listaPlato); // Ajusta según tu lógica
+        
      
         // 5. Mostrar confirmación
-        JOptionPane.showMessageDialog(null,
-            "Pedido guardado:\nCliente: " + cliente +
-            "\nTipo: " + tipo +
-            "\nPlatos: "  +
-            "\nTotal: S/ " + nuevoPedido.getTotal());
+        
     } catch (Exception ex) {
-        JOptionPane.showMessageDialog(null, "Error al guardar el pedido: " + ex.getMessage());
+       
     }
 
         
@@ -421,7 +437,7 @@ public class JP_Pedido extends javax.swing.JPanel {
         
         
         for(Plato p:ListaPlatos){
-           Object[] fila={p.getNombre(),p.getPrecio(),p.isDisponible()};
+           Object[] fila={p.getNombre(),p.getPrecio(),p.getEstado()};
           
            modelomenu.addRow(fila);
         }

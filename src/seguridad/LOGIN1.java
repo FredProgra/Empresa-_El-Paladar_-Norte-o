@@ -3,15 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package seguridad;
-
-
-
-import Model.MysqlConection;
 import java.awt.Panel;
 import javax.swing.JOptionPane;
 import seguridad.Inventario;
-import java.sql.Connection;import java.sql.SQLException;
-;
 
 
         
@@ -20,14 +14,14 @@ import java.sql.Connection;import java.sql.SQLException;
  *
  * @author Gonzalo
  */
-public class LOGIN extends javax.swing.JFrame {
+public class LOGIN1 extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LOGIN.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LOGIN1.class.getName());
 
     /**
      * Creates new form ModuloInicio
      */
-    public LOGIN() {
+    public LOGIN1() {
         initComponents();
     }
 
@@ -51,6 +45,7 @@ public class LOGIN extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btningresar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        btncrear = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
@@ -91,6 +86,16 @@ public class LOGIN extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/inicio.png"))); // NOI18N
 
+        btncrear.setBackground(new java.awt.Color(0, 0, 0));
+        btncrear.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 18)); // NOI18N
+        btncrear.setForeground(new java.awt.Color(255, 255, 255));
+        btncrear.setText("Crear Cuenta");
+        btncrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncrearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -102,9 +107,6 @@ public class LOGIN extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 24, Short.MAX_VALUE)
-                        .addComponent(btningresar, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,8 +114,15 @@ public class LOGIN extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                            .addComponent(txtUsuario))))
+                            .addComponent(txtUsuario)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 24, Short.MAX_VALUE)
+                        .addComponent(btningresar, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(34, 34, 34))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(btncrear, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +137,11 @@ public class LOGIN extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(btningresar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(18, 18, 18)
+                .addComponent(btncrear)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.jpg"))); // NOI18N
@@ -207,6 +218,10 @@ public class LOGIN extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btningresarActionPerformed
 
+    private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btncrearActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,25 +244,11 @@ public class LOGIN extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new LOGIN().setVisible(true));
-        Connection cnn=null;
-        try {
-            cnn= MysqlConection.getConnection();
-            System.out.println("Conexion exitosa a mysql");
-            
-        } catch (SQLException e) {e.printStackTrace();
-        }finally{
-        if(cnn!=null){
-            
-            try {
-                cnn.close();System.out.println("Conexion cerrada");
-            } catch (SQLException e) { System.out.println("Error al cerrar la conexion");
-            }
-}
-        }
+        java.awt.EventQueue.invokeLater(() -> new LOGIN1().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncrear;
     private javax.swing.JButton btningresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

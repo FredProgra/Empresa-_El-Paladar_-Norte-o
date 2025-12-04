@@ -469,7 +469,7 @@ public class JP_Inicio extends javax.swing.JPanel {
         
         
         for(Plato p:ListaPlatos){
-           Object[] fila={p.getId(),p.getNombre(),p.getPrecio(),p.isDisponible(),p.getCategoria()};
+           Object[] fila={p.getId(),p.getNombre(),p.getPrecio(),p.getEstado(),p.getCategoria()};
           
            modelo.addRow(fila);
         }
